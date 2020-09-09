@@ -15,7 +15,7 @@ namespace WindowsFormsApp2
         public Form1()
         {
             InitializeComponent();
-            label1.Text = "";
+            label1.Text = "1";
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
