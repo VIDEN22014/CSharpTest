@@ -27,26 +27,9 @@ namespace WindowsFormsApp2
         {
 
         }
-        private double textBoxToDouble(TextBox sender) {
-            char[] temp = new char[10];
-            int size;
-            bool isNegative = false;
+        private double textBoxToDouble(TextBox sender) { 
             if (sender.Text == "") { return 0; }
-            temp = sender.Text.ToCharArray();
-            if (sender.Text[0] == '-')
-            {
-                isNegative = true;
-                size = sender.Text.Length;
-                for (int i = 0; i < size; i++)
-                {
-                    if (i != size - 1) { temp[i] = temp[i + 1]; }
-                    else { temp[i] = '\0'; }
-                }
-            }
-            string s = new string(temp);
-            if (isNegative) { return -(1)*Convert.ToDouble(s); }
-            else { return Convert.ToDouble(s);}
-
+            return Convert.ToDouble(sender.Text);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -73,11 +56,10 @@ namespace WindowsFormsApp2
             }
 
             chart1.Series[0].Points.Clear();
-            for (double i = 0; i < 10; i+=0.01)
+            for (double i = 0; i < 20*min; i+=0.1)
             {
                 chart1.Series[0].Points.AddXY(amp1*Math.Sin(freq1*i+grad*(Math.PI)/180),amp2*Math.Sin(freq2*i));
             }
-
         }
     }
 }
