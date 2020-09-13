@@ -60,7 +60,7 @@
             // 
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.Location = new System.Drawing.Point(290, 12);
+            this.chart1.Location = new System.Drawing.Point(295, 12);
             this.chart1.Name = "chart1";
             series1.BorderWidth = 2;
             series1.ChartArea = "ChartArea1";
@@ -68,7 +68,7 @@
             series1.Color = System.Drawing.Color.SeaGreen;
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(637, 493);
+            this.chart1.Size = new System.Drawing.Size(550, 550);
             this.chart1.TabIndex = 2;
             this.chart1.Text = "chart1";
             title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
