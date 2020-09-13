@@ -68,7 +68,7 @@
             series1.Color = System.Drawing.Color.SeaGreen;
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(664, 498);
+            this.chart1.Size = new System.Drawing.Size(637, 493);
             this.chart1.TabIndex = 2;
             this.chart1.Text = "chart1";
             title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);

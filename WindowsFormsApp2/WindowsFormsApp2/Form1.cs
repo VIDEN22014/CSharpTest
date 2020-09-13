@@ -27,38 +27,38 @@ namespace WindowsFormsApp2
         {
 
         }
-        private double textBoxToDouble(TextBox sender) { 
+        private double textBoxToDouble(TextBox sender)
+        {
             if (sender.Text == "") { return 0; }
             return Convert.ToDouble(sender.Text);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            double grad = 0,amp1=0,amp2=0,freq1=0,freq2=0,min=0;
+            double grad = 0, amp1 = 0, amp2 = 0, freq1 = 0, freq2 = 0, min = 0;
             grad = textBoxToDouble(textBox1);
             amp1 = textBoxToDouble(textBox2);
             amp2 = textBoxToDouble(textBox3);
             freq1 = textBoxToDouble(textBox4);
             freq2 = textBoxToDouble(textBox5);
-
-            if (freq1 >= freq2) {
-                min = freq2;
-            }
+            //
+            if (freq1 >= freq2) { min = freq2; }
             else { min = freq1; }
 
             for (double i = min; i > 0; i--)
             {
-                if (freq1 % i == 0 && freq2 % i == 0) {
+                if (freq1 % i == 0 && freq2 % i == 0)
+                {
                     freq1 /= i;
                     freq2 /= i;
                     break;
                 }
             }
-
+            //
             chart1.Series[0].Points.Clear();
-            for (double i = 0; i < 20*min; i+=0.1)
+            for (double i = 0; i < 20; i += 0.01)
             {
-                chart1.Series[0].Points.AddXY(amp1*Math.Sin(freq1*i+grad*(Math.PI)/180),amp2*Math.Sin(freq2*i));
+                chart1.Series[0].Points.AddXY(amp1 * Math.Sin(freq1 * i + grad * (Math.PI) / 180.0), amp2 * Math.Sin(freq2 * i));
             }
         }
     }
