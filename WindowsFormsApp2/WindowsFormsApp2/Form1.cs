@@ -27,7 +27,7 @@ namespace WindowsFormsApp2
         {
 
         }
-        private double textBoxToDouble(TextBox sender)
+        public double textBoxToDouble(TextBox sender)
         {
             if (sender.Text == "") { return 0; }
             return Convert.ToDouble(sender.Text);
@@ -35,19 +35,19 @@ namespace WindowsFormsApp2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            double grad = 0, amp1 = 0, amp2 = 0, freq1 = 0, freq2 = 0, ratio = 0;
-            grad = textBoxToDouble(textBox1);
-            amp1 = textBoxToDouble(textBox2);
-            amp2 = textBoxToDouble(textBox3);
-            freq1 = textBoxToDouble(textBox4);
-            freq2 = textBoxToDouble(textBox5);
-
-            ratio = freq1 / freq2;
-
+            double delta = 0, A = 0, B = 0, a = 0, b = 0, ratio = 0, x = 0, y = 0;
+            delta = textBoxToDouble(textBox1);
+            A = textBoxToDouble(textBox2);
+            B = textBoxToDouble(textBox3);
+            a = textBoxToDouble(textBox4);
+            b = textBoxToDouble(textBox5);
+            ratio = b / a;
             chart1.Series[0].Points.Clear();
-            for (double i = 0; i < 50; i += 0.01)
+            for (double t = 0; t < 50; t += 0.01)
             {
-                chart1.Series[0].Points.AddXY(amp1 * Math.Sin(i*10 + grad * (Math.PI) / 180.0), amp2 * Math.Sin(i *10* (1 / ratio)));
+                x = A * Math.Sin(t * 10 + delta * Math.PI / 180.0);
+                y = B * Math.Sin(t * 10 * ratio);
+                chart1.Series[0].Points.AddXY(x, y);
             }
         }
     }
