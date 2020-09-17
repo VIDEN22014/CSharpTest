@@ -63,34 +63,75 @@ namespace WindowsFormsApp2
         }
         int level1Turn()
         {
-            int buttonIndex = -1;
             int sumHorizontal = 0, sumVertical = 0, sumDiagonal1 = 0, sumDiagonal2 = 0;
-            int sumIndex = -1, iterationIndex = -1;
             for (int i = 0; i < 3; i++)
             {
-                
+                sumVertical = 0;
+                sumHorizontal = 0;
                 sumDiagonal1 += field[i, i];
                 sumDiagonal2 += field[2 - i, i];
                 sumHorizontal += field[i, 0] + field[i, 1] + field[i, 2];
                 sumVertical += field[0, i] + field[1, i] + field[2, i];
-                if (sumDiagonal1 == 2 || sumDiagonal1 == 20) {
+                if (sumDiagonal1 == 20)
+                {
                     for (int j = 0; j < 3; j++)
                     {
                         if (isEmpty(j * 4)) { return j * 4; }
                     }
                 }
-                //if (sumDiagonal2 == 2 || sumDiagonal2 == 20) {
-                //    for (int j = 1; j < 4; j++)
-                //    {
-                //        if (isEmpty(j * 2)) { return j * 2; }
-                //    }
-                //}
-                if (sumHorizontal == 2 || sumHorizontal == 20) { sumIndex = 2; iterationIndex = i; }
-                if (sumVertical == 2 || sumVertical == 20) { sumIndex = 3; iterationIndex = i; }
+                if (sumDiagonal2 == 20)
+                {
+                    for (int j = 1; j < 4; j++)
+                    {
+                        if (isEmpty(j * 2)) { return j * 2; }
+                    }
+                }
+                if (sumHorizontal == 20)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (isEmpty(3 * i + j)) { return 3 * i + j; }
+                    }
+                }
+                if (sumVertical == 20)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (isEmpty(3 * j + i)) { return 3 * j + i; }
+                    }
+                }
+                if (sumDiagonal1 == 2)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (isEmpty(j * 4)) { return j * 4; }
+                    }
+                }
+                if (sumDiagonal2 == 2)
+                {
+                    for (int j = 1; j < 4; j++)
+                    {
+                        if (isEmpty(j * 2)) { return j * 2; }
+                    }
+                }
+                if (sumHorizontal == 2)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (isEmpty(3 * i + j)) { return 3 * i + j; }
+                    }
+                }
+                if (sumVertical == 2)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (isEmpty(3 * j + i)) { return 3 * j + i; }
+                    }
+                }
             }
             return -1;
         }
-        int level0Turn()
+        int RandomTurn()
         {
             int buttonIndex = 0;
             Random rnd = new Random();
@@ -105,16 +146,25 @@ namespace WindowsFormsApp2
             int buttonIndex = 0;
             if (difficulty == 0)
             {
-                buttonIndex = level0Turn();
+                buttonIndex = RandomTurn();
             }
             else if (difficulty == 1)
             {
                 buttonIndex = level1Turn();
-                if (buttonIndex == -1) { buttonIndex = level0Turn(); }
+                if (buttonIndex == -1) { buttonIndex = RandomTurn(); }
             }
             else if (difficulty == 2)
             {
+                buttonIndex = level1Turn();
+                if (buttonIndex == -1)
+                {
+                    if (isEmpty(4)) { buttonIndex = 4; }
+                    else
+                    {
 
+                    }
+                }
+                else { buttonIndex = RandomTurn(); }
             }
             await Task.Delay(1000);
             GetButton(buttonIndex).Text = "O";
@@ -234,6 +284,20 @@ namespace WindowsFormsApp2
         private void button10_Click(object sender, EventArgs e)
         {
             Application.Restart();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            label4.Text = "";
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    label4.Text += field[i, j] + " ";
+                }
+                label4.Text += "\r";
+            }
+
         }
     }
 }
