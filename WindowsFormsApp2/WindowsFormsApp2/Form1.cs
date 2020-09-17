@@ -148,12 +148,12 @@ namespace WindowsFormsApp2
             {
                 buttonIndex = RandomTurn();
             }
-            else if (difficulty == 1)
+            if (difficulty == 1)
             {
                 buttonIndex = level1Turn();
                 if (buttonIndex == -1) { buttonIndex = RandomTurn(); }
             }
-            else if (difficulty == 2)
+            if (difficulty == 2)
             {
                 buttonIndex = level1Turn();
                 if (buttonIndex == -1)
@@ -161,10 +161,20 @@ namespace WindowsFormsApp2
                     if (isEmpty(4)) { buttonIndex = 4; }
                     else
                     {
-
+                        for (int i = 0; i < 9; i++)
+                        {
+                            if (i != 4 && i % 2 == 0)
+                            {
+                                if (isEmpty(i))
+                                {
+                                    buttonIndex = i;
+                                    break;
+                                }
+                            }
+                            buttonIndex = RandomTurn();
+                        }
                     }
                 }
-                else { buttonIndex = RandomTurn(); }
             }
             await Task.Delay(1000);
             GetButton(buttonIndex).Text = "O";
@@ -286,18 +296,5 @@ namespace WindowsFormsApp2
             Application.Restart();
         }
 
-        private void button11_Click(object sender, EventArgs e)
-        {
-            label4.Text = "";
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    label4.Text += field[i, j] + " ";
-                }
-                label4.Text += "\r";
-            }
-
-        }
     }
 }
