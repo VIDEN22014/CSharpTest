@@ -63,7 +63,7 @@ namespace WindowsFormsApp2
         }
         int level1Turn()
         {
-            int sumHorizontal = 0, sumVertical = 0, sumDiagonal1 = 0, sumDiagonal2 = 0;
+            int sumHorizontal, sumVertical, sumDiagonal1 = 0, sumDiagonal2 = 0;
             for (int i = 0; i < 3; i++)
             {
                 sumVertical = 0;
@@ -148,11 +148,13 @@ namespace WindowsFormsApp2
             {
                 buttonIndex = RandomTurn();
             }
+
             if (difficulty == 1)
             {
                 buttonIndex = level1Turn();
                 if (buttonIndex == -1) { buttonIndex = RandomTurn(); }
             }
+
             if (difficulty == 2)
             {
                 buttonIndex = level1Turn();
@@ -176,9 +178,11 @@ namespace WindowsFormsApp2
                     }
                 }
             }
+            //
             await Task.Delay(1000);
             GetButton(buttonIndex).Text = "O";
             field[Convert.ToInt32(Math.Floor(buttonIndex / 3.0)), buttonIndex % 3] = 10;
+            //
             if (isGameOver() == 2) { label2.Text = "Ви Програли!!!"; }
             else if (isGameOver() == 3) { label2.Text = "Нічия"; }
             else
@@ -186,7 +190,6 @@ namespace WindowsFormsApp2
                 isPlayerTurn = true;
                 label2.Text = "Ваш Хід";
             }
-
         }
         void Turn(int buttonIndex)
         {
@@ -194,6 +197,7 @@ namespace WindowsFormsApp2
             {
                 GetButton(buttonIndex).Text = "X";
                 field[Convert.ToInt32(Math.Floor(buttonIndex / 3.0)), buttonIndex % 3] = 1;
+                //
                 if (isGameOver() == 1) { label2.Text = "Ви Виграли!!!"; }
                 else if (isGameOver() == 3) { label2.Text = "Нічия"; }
                 else
@@ -203,7 +207,6 @@ namespace WindowsFormsApp2
                     BotTurn();
                 }
             }
-
         }
 
         Button GetButton(int buttonIndex)
