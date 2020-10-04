@@ -17,7 +17,6 @@ namespace WindowsFormsApp2
         static int dataSize;
         static int interpolatedDataSize;
         static int interpolatedHermiteDataSize;
-
         public Form1()
         {
             InitializeComponent();
@@ -33,7 +32,6 @@ namespace WindowsFormsApp2
             protected point[] interpolatedData { get; set; }
             public СInterpolation(int dataSize, int interpolatedDataSize)
             {
-
                 data = new point[dataSize];
                 interpolatedData = new point[interpolatedDataSize];
                 for (int i = 0; i < dataSize; i++)
@@ -41,30 +39,30 @@ namespace WindowsFormsApp2
                     data[i].posx = i * (Math.PI * 2 / (dataSize - 1));
                     data[i].posy = Math.Sin(data[i].posx);
                 }
-                data[dataSize - 1].posy = 0;
+            }
+        }
+
+        class LineInterpolation : СInterpolation
+        {
+            public LineInterpolation(int dataSize, int interpolatedDataSize) : base(dataSize, interpolatedDataSize)
+            {
                 for (int i = 0; i < interpolatedDataSize; i++)
                 {
                     interpolatedData[i].posx = i * (Math.PI * 2 / (interpolatedDataSize - 1));
                 }
             }
-
-        }
-
-        class LineInterpolation : СInterpolation
-        {
-            public LineInterpolation(int dataSize, int interpolatedDataSize) : base(dataSize, interpolatedDataSize) { }
             public point[] Interpolate()
             {
-                double x, y;
-                for (int i = 1; i < interpolatedDataSize; i++)
+                double vectX, vectY;
+                for (int i = 0; i < interpolatedDataSize; i++)
                 {
                     for (int j = 0; j < dataSize - 1; j++)
                     {
-                        if (interpolatedData[i].posx > data[j].posx && interpolatedData[i].posx <= data[j + 1].posx)
+                        if (interpolatedData[i].posx >= data[j].posx && interpolatedData[i].posx <= data[j + 1].posx)
                         {
-                            x = data[j + 1].posx - data[j].posx;
-                            y = data[j + 1].posy - data[j].posy;
-                            interpolatedData[i].posy = data[j].posy + ((interpolatedData[i].posx - data[j].posx) * y / x);
+                            vectX = data[j + 1].posx - data[j].posx;
+                            vectY = data[j + 1].posy - data[j].posy;
+                            interpolatedData[i].posy = data[j].posy + ((interpolatedData[i].posx - data[j].posx) * vectY / vectX);
                         }
                     }
                 }
@@ -75,7 +73,7 @@ namespace WindowsFormsApp2
         class HermiteInterpolation : СInterpolation
         {
             point[] dxData { get; set; }
-            public HermiteInterpolation(int dataSize, int interpolatedHermiteDataSize) : base(dataSize, ((interpolatedHermiteDataSize+1) * (dataSize-1)) + 1)
+            public HermiteInterpolation(int dataSize, int interpolatedHermiteDataSize) : base(dataSize, ((interpolatedHermiteDataSize + 1) * (dataSize - 1)) + 1)
             {
                 dxData = new point[dataSize];
                 for (int i = 0; i < dataSize; i++)
@@ -88,7 +86,7 @@ namespace WindowsFormsApp2
             {
                 int interval = 0;
                 int dataIndex = 0;
-                double Ax, Bx, dxAx, dxBx, Ay, By, dxAy, dxBy, t = 0,i=0;
+                double Ax, Bx, dxAx, dxBx, Ay, By, dxAy, dxBy, t = 0, i = 0;
                 while (interval < (dataSize - 1))
                 {
                     Ax = data[interval].posx;
@@ -114,7 +112,11 @@ namespace WindowsFormsApp2
                 return interpolatedData;
             }
         }
-
+        public int textBoxToInt(TextBox sender)
+        {
+            if (sender.Text == "") { return 0; }
+            return Convert.ToInt32(sender.Text);
+        }
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -125,27 +127,25 @@ namespace WindowsFormsApp2
         {
 
         }
-        public int textBoxToInt(TextBox sender)
-        {
-            if (sender.Text == "") { return 0; }
-            return Convert.ToInt32(sender.Text);
-        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBoxToInt(textBox1) <= 1 || textBoxToInt(textBox2) <= 1||textBoxToInt(textBox3)<1)
+            if (textBoxToInt(textBox1) <= 1 || textBoxToInt(textBox2) <= 1 || textBoxToInt(textBox3) < 1)
             {
                 return;
             }
+            //
             dataSize = textBoxToInt(textBox1);
             interpolatedDataSize = textBoxToInt(textBox2);
             interpolatedHermiteDataSize = textBoxToInt(textBox3);
             LineInterpolation interpolationLinear = new LineInterpolation(dataSize, interpolatedDataSize);
             HermiteInterpolation interpolationHermite = new HermiteInterpolation(dataSize, interpolatedHermiteDataSize);
+            double x, y;
+            //
             chart1.Series[0].Points.Clear();
             if (checkBox1.Checked)
             {
-                double x, y;
                 for (int i = 0; i < 100; i++)
                 {
                     x = i * (Math.PI * 2 / (99));
@@ -161,15 +161,12 @@ namespace WindowsFormsApp2
                 {
                     chart1.Series[1].Points.AddXY(linear[i].posx, linear[i].posy);
                 }
-
-
             }
             chart1.Series[2].Points.Clear();
             if (checkBox3.Checked)
             {
-
                 point[] hermite = interpolationHermite.Interpolate();
-                for (int i = 0; i < ((interpolatedHermiteDataSize+1) * (dataSize - 1)) + 1 ; i++)
+                for (int i = 0; i < ((interpolatedHermiteDataSize + 1) * (dataSize - 1)) + 1; i++)
                 {
                     chart1.Series[2].Points.AddXY(hermite[i].posx, hermite[i].posy);
                 }
@@ -177,7 +174,6 @@ namespace WindowsFormsApp2
             chart1.Series[3].Points.Clear();
             if (checkBox4.Checked)
             {
-                double x, y;
                 for (int i = 0; i < dataSize; i++)
                 {
                     x = i * (Math.PI * 2 / (dataSize - 1));
