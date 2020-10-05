@@ -39,18 +39,16 @@ namespace WindowsFormsApp2
                     data[i].posx = i * (Math.PI * 2 / (dataSize - 1));
                     data[i].posy = Math.Sin(data[i].posx);
                 }
-            }
-        }
-
-        class LineInterpolation : СInterpolation
-        {
-            public LineInterpolation(int dataSize, int interpolatedDataSize) : base(dataSize, interpolatedDataSize)
-            {
                 for (int i = 0; i < interpolatedDataSize; i++)
                 {
                     interpolatedData[i].posx = i * (Math.PI * 2 / (interpolatedDataSize - 1));
                 }
             }
+        }
+
+        class LineInterpolation : СInterpolation
+        {
+            public LineInterpolation(int dataSize, int interpolatedDataSize) : base(dataSize, interpolatedDataSize){}
             public point[] Interpolate()
             {
                 double vectX, vectY;
@@ -63,6 +61,7 @@ namespace WindowsFormsApp2
                             vectX = data[j + 1].posx - data[j].posx;
                             vectY = data[j + 1].posy - data[j].posy;
                             interpolatedData[i].posy = data[j].posy + ((interpolatedData[i].posx - data[j].posx) * vectY / vectX);
+                            break;
                         }
                     }
                 }
@@ -73,7 +72,7 @@ namespace WindowsFormsApp2
         class HermiteInterpolation : СInterpolation
         {
             point[] dxData { get; set; }
-            public HermiteInterpolation(int dataSize, int interpolatedHermiteDataSize) : base(dataSize, ((interpolatedHermiteDataSize + 1) * (dataSize - 1)) + 1)
+            public HermiteInterpolation(int dataSize, int interpolatedHermiteDataSize) : base(dataSize, interpolatedHermiteDataSize)
             {
                 dxData = new point[dataSize];
                 for (int i = 0; i < dataSize; i++)
@@ -84,29 +83,23 @@ namespace WindowsFormsApp2
             }
             public point[] Interpolate()
             {
-                int interval = 0;
-                int dataIndex = 0;
-                double Ax, Bx, dxAx, dxBx, Ay, By, dxAy, dxBy, t = 0, i = 0;
-                while (interval < (dataSize - 1))
+                double x,x0, x1,u0,u1,u2,u3;
+                for (int i = 0; i < interpolatedHermiteDataSize; i++)
                 {
-                    Ax = data[interval].posx;
-                    Ay = data[interval].posy;
-                    Bx = data[interval + 1].posx;
-                    By = data[interval + 1].posy;
-                    dxAx = dxData[interval].posx;
-                    dxAy = dxData[interval].posy;
-                    dxBx = dxData[interval + 1].posx;
-                    dxBy = dxData[interval + 1].posy;
-                    interpolatedData[dataIndex].posx = Ax + dxAx * t + (-3 * Ax + 3 * Bx - 2 * dxAx - dxBx) * Math.Pow(t, 2) + (2 * Ax - 2 * Bx + dxAx + dxBx) * Math.Pow(t, 3);
-                    interpolatedData[dataIndex].posy = Ay + dxAy * t + (-3 * Ay + 3 * By - 2 * dxAy - dxBy) * Math.Pow(t, 2) + (2 * Ay - 2 * By + dxAy + dxBy) * Math.Pow(t, 3);
-                    dataIndex++;
-                    t = t + 1 / (interpolatedHermiteDataSize + 1.0);
-                    i++;
-                    if (i > interpolatedHermiteDataSize)
+                    for (int j = 0; j < dataSize; j++)
                     {
-                        t = 0;
-                        i = 0;
-                        interval++;
+                        if (interpolatedData[i].posx >= data[j].posx && interpolatedData[i].posx <= data[j + 1].posx)
+                        {
+                            x = interpolatedData[i].posx;
+                            x0 = data[j].posx;
+                            x1 = data[j+1].posx;
+                            u0 =(1+2*((x-x0)/(x1-x0)))*Math.Pow(((x1-x)/(x1-x0)),2)*data[j].posy;
+                            u1 = (x-x0)* Math.Pow(((x1 - x) / (x1 - x0)), 2) * dxData[j].posy;
+                            u2 = (1 + 2 * ((x1 - x) / (x1 - x0))) * Math.Pow(((x0 - x) / (x0 - x1)), 2) * data[j+1].posy;
+                            u3 = (x - x1) * Math.Pow(((x0 - x) / (x0 - x1)), 2) * dxData[j+1].posy;
+                            interpolatedData[i].posy = u0 + u1 + u2 + u3;
+                            break;
+                        }
                     }
                 }
                 return interpolatedData;
@@ -166,7 +159,7 @@ namespace WindowsFormsApp2
             if (checkBox3.Checked)
             {
                 point[] hermite = interpolationHermite.Interpolate();
-                for (int i = 0; i < ((interpolatedHermiteDataSize + 1) * (dataSize - 1)) + 1; i++)
+                for (int i = 0; i < interpolatedHermiteDataSize; i++)
                 {
                     chart1.Series[2].Points.AddXY(hermite[i].posx, hermite[i].posy);
                 }
