@@ -35,7 +35,7 @@ namespace WindowsFormsApp2
             }
             if (functionChecker[2].Checked == true)
             {
-                return 2*Math.Pow(x,3);
+                return 2 * Math.Pow(x, 3);
             }
             return 0;
         }
@@ -99,17 +99,27 @@ namespace WindowsFormsApp2
                 return area;
             }
         }
+        double ethaloneIntegral()
+        {
+            if (functionChecker[0].Checked == true)
+            {
+                return (-1 * Math.Cos(rightBorder)) - (-1 * Math.Cos(leftBorder));
+            }
+            if (functionChecker[1].Checked == true)
+            {
+                return 2.0 / 3.0 * Math.Pow(rightBorder, 3.0 / 2.0) - 2.0 / 3.0 * Math.Pow(leftBorder, 3.0 / 2.0) - (rightBorder - leftBorder);
+            }
+            if (functionChecker[2].Checked == true)
+            {
+                return 1.0 / 2.0 * Math.Pow(rightBorder, 4) - 1.0 / 2.0 * Math.Pow(leftBorder, 4);
+            }
+            return 0;
+        }
         double TextBoxToDouble(TextBox textBox)
         {
             if (textBox.Text == "") { return 0; }
             return Convert.ToDouble(textBox.Text);
         }
-
-        private void trapeziumMethodArea_Click(object sender, EventArgs e)
-        {
-
-        }
-
         void drawGraph(Chart functionGraph)
         {
             double graphStep = (rightBorder - leftBorder) / 1000;
@@ -130,6 +140,7 @@ namespace WindowsFormsApp2
             rectangeMethodArea.Text = "Площа Методом Середніх Прямокутників = " + Convert.ToString(methodRectangle.Integrate());
             trapeziumMethodArea.Text = "Площа Методом Трапецій = " + Convert.ToString(methodTrapezium.Integrate());
             simpsonMethodArea.Text = "Площа Методом Сімпсона = " + Convert.ToString(methodSimpson.Integrate());
+            ethaloneIntegralArea.Text = "Еталонна Площа = " + ethaloneIntegral();
             drawGraph(functionGraph);
         }
     }
