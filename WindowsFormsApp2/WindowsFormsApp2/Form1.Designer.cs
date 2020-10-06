@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -88,19 +88,20 @@
             // 
             // chart1
             // 
-            chartArea10.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea10);
-            legend10.Name = "Legend1";
-            this.chart1.Legends.Add(legend10);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
             this.chart1.Location = new System.Drawing.Point(509, 43);
             this.chart1.Name = "chart1";
-            series10.ChartArea = "ChartArea1";
-            series10.Legend = "Legend1";
-            series10.Name = "Series1";
-            this.chart1.Series.Add(series10);
-            this.chart1.Size = new System.Drawing.Size(300, 300);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Name = "Series1";
+            this.chart1.Series.Add(series3);
+            this.chart1.Size = new System.Drawing.Size(478, 438);
             this.chart1.TabIndex = 4;
             this.chart1.Text = "chart1";
+            title3.Name = "Title1";
+            title3.Text = "Графік Функції";
+            this.chart1.Titles.Add(title3);
             // 
             // textBox2
             // 
@@ -157,29 +158,29 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(233, 346);
+            this.label4.Location = new System.Drawing.Point(52, 323);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(278, 16);
+            this.label4.Size = new System.Drawing.Size(288, 16);
             this.label4.TabIndex = 11;
-            this.label4.Text = "Площа Методом середніх прямокутників=";
+            this.label4.Text = "Площа Методом Середніх Прямокутників = ";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(330, 374);
+            this.label5.Location = new System.Drawing.Point(151, 354);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(181, 16);
+            this.label5.Size = new System.Drawing.Size(189, 16);
             this.label5.TabIndex = 12;
-            this.label5.Text = "Площа Методом трапецій=";
+            this.label5.Text = "Площа Методом Трапецій = ";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(249, 202);
+            this.label6.Location = new System.Drawing.Point(151, 386);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(39, 16);
+            this.label6.Size = new System.Drawing.Size(189, 16);
             this.label6.TabIndex = 13;
-            this.label6.Text = "Крок";
+            this.label6.Text = "Площа Методом Сімпсона = ";
             // 
             // Form1
             // 
