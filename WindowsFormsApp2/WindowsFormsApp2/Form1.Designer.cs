@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.leftBorderIN = new System.Windows.Forms.TextBox();
@@ -88,20 +88,20 @@
             // 
             // functionGraph
             // 
-            chartArea1.Name = "ChartArea1";
-            this.functionGraph.ChartAreas.Add(chartArea1);
+            chartArea4.Name = "ChartArea1";
+            this.functionGraph.ChartAreas.Add(chartArea4);
             this.functionGraph.Location = new System.Drawing.Point(509, 43);
             this.functionGraph.Name = "functionGraph";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Name = "Series1";
-            this.functionGraph.Series.Add(series1);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Name = "Series1";
+            this.functionGraph.Series.Add(series4);
             this.functionGraph.Size = new System.Drawing.Size(478, 438);
             this.functionGraph.TabIndex = 4;
             this.functionGraph.Text = "chart1";
-            title1.Name = "Title1";
-            title1.Text = "Графік Функції";
-            this.functionGraph.Titles.Add(title1);
+            title4.Name = "Title1";
+            title4.Text = "Графік Функції";
+            this.functionGraph.Titles.Add(title4);
             // 
             // rightBorderIN
             // 
@@ -150,9 +150,9 @@
             this.func3.AutoSize = true;
             this.func3.Location = new System.Drawing.Point(362, 198);
             this.func3.Name = "func3";
-            this.func3.Size = new System.Drawing.Size(91, 20);
+            this.func3.Size = new System.Drawing.Size(56, 20);
             this.func3.TabIndex = 10;
-            this.func3.Text = "Функція 3";
+            this.func3.Text = "2x^3";
             this.func3.UseVisualStyleBackColor = true;
             // 
             // rectangeMethodArea
@@ -167,16 +167,17 @@
             // trapeziumMethodArea
             // 
             this.trapeziumMethodArea.AutoSize = true;
-            this.trapeziumMethodArea.Location = new System.Drawing.Point(151, 354);
+            this.trapeziumMethodArea.Location = new System.Drawing.Point(151, 353);
             this.trapeziumMethodArea.Name = "trapeziumMethodArea";
             this.trapeziumMethodArea.Size = new System.Drawing.Size(189, 16);
             this.trapeziumMethodArea.TabIndex = 12;
             this.trapeziumMethodArea.Text = "Площа Методом Трапецій = ";
+            this.trapeziumMethodArea.Click += new System.EventHandler(this.trapeziumMethodArea_Click);
             // 
             // simpsonMethodArea
             // 
             this.simpsonMethodArea.AutoSize = true;
-            this.simpsonMethodArea.Location = new System.Drawing.Point(151, 386);
+            this.simpsonMethodArea.Location = new System.Drawing.Point(151, 381);
             this.simpsonMethodArea.Name = "simpsonMethodArea";
             this.simpsonMethodArea.Size = new System.Drawing.Size(189, 16);
             this.simpsonMethodArea.TabIndex = 13;

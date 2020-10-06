@@ -33,6 +33,10 @@ namespace WindowsFormsApp2
             {
                 return Math.Sqrt(x) - 1;
             }
+            if (functionChecker[2].Checked == true)
+            {
+                return 2*Math.Pow(x,3);
+            }
             return 0;
         }
         interface IIntegral
@@ -54,14 +58,15 @@ namespace WindowsFormsApp2
         }
         class TrapeziumMethod : IIntegral
         {
-            double area = 0;
+            double area = 0, numOfPartition = (rightBorder - leftBorder) / step, x = leftBorder + step;
             public TrapeziumMethod() { }
             public double Integrate()
             {
-                area = (getY(leftBorder) + getY(rightBorder)) / 2;
-                for (double x = leftBorder + step; x < rightBorder; x++)
+                area += (getY(leftBorder) + getY(rightBorder)) / 2.0;
+                for (double i = 1; i < numOfPartition; i++)
                 {
                     area += getY(x);
+                    x += step;
                 }
                 area *= step;
                 return area;
@@ -69,22 +74,24 @@ namespace WindowsFormsApp2
         }
         class SimpsonMethod : IIntegral
         {
-            double area = 0;
+            double area = 0, numOfPartition = (rightBorder - leftBorder) / step, x = leftBorder + step;
             public SimpsonMethod() { }
             public double Integrate()
             {
                 double sum = 0;
-                area += getY(leftBorder)+getY(rightBorder);
-                for (double x = leftBorder+step/2; x < rightBorder; x += step)
+                area += getY(leftBorder) + getY(rightBorder);
+                for (double x = leftBorder + step / 2; x < rightBorder; x += step)
                 {
                     sum += getY(x);
                 }
                 sum *= 4.0;
                 area += sum;
                 sum = 0;
-                for (double x = leftBorder+step; x < rightBorder; x += step)
+                x = leftBorder + step;
+                for (double i = 1; i < numOfPartition; i++)
                 {
                     sum += getY(x);
+                    x += step;
                 }
                 sum *= 2.0;
                 area += sum;
@@ -97,6 +104,12 @@ namespace WindowsFormsApp2
             if (textBox.Text == "") { return 0; }
             return Convert.ToDouble(textBox.Text);
         }
+
+        private void trapeziumMethodArea_Click(object sender, EventArgs e)
+        {
+
+        }
+
         void drawGraph(Chart functionGraph)
         {
             double graphStep = (rightBorder - leftBorder) / 1000;
