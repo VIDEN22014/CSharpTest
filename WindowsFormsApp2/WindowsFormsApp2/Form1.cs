@@ -54,7 +54,7 @@ namespace WindowsFormsApp2
                 double vectX, vectY;
                 for (int i = 0; i < interpolatedDataSize; i++)
                 {
-                    for (int j = 0; j < dataSize - 1; j++)
+                    for (int j = 0; j < dataSize; j++)
                     {
                         if (interpolatedData[i].posx >= data[j].posx && interpolatedData[i].posx <= data[j + 1].posx)
                         {
