@@ -8,36 +8,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace WindowsFormsApp2
 {
     public partial class Form1 : Form
     {
         static double leftBorder, rightBorder, step;
-        static RadioButton[] radio = new RadioButton[3];
+        static RadioButton[] functionChecker = new RadioButton[3];
         public Form1()
         {
             InitializeComponent();
-            radio[0] = radioButton1;
-            radio[1] = radioButton2;
-            radio[2] = radioButton3;
+            functionChecker[0] = func1;
+            functionChecker[1] = func2;
+            functionChecker[2] = func3;
         }
         static double getY(double x)
         {
-            if (radio[0].Checked == true)
+            if (functionChecker[0].Checked == true)
             {
                 return Math.Sin(x);
             }
-            if (radio[1].Checked == true)
+            if (functionChecker[1].Checked == true)
             {
                 return Math.Sqrt(x) - 1;
             }
             return 0;
-        }
-        struct point
-        {
-            public double posx { get; set; }
-            public double posy { get; set; }
         }
         interface IIntegral
         {
@@ -45,80 +41,55 @@ namespace WindowsFormsApp2
         }
         class MidRectangleMethod : IIntegral
         {
-            double s = 0, h = leftBorder + step / 2;
+            double area = 0;
             public MidRectangleMethod() { }
             public double Integrate()
             {
-                while (h < rightBorder)
+                for (double x = leftBorder + step / 2; x < rightBorder; x += step)
                 {
-                    s += step * getY(h);
-                    h += step;
+                    area += step * getY(x);
                 }
-                return s;
+                return area;
             }
         }
         class TrapeziumMethod : IIntegral
         {
-            double s = 0;
-            point[] data;
-            public TrapeziumMethod()
-            {
-                double x = leftBorder;
-                data = new point[Convert.ToInt32(Math.Floor((rightBorder - leftBorder) / step) + 1)];
-                for (int i = 0; x <= rightBorder; i++)
-                {
-                    data[i].posx = x;
-                    data[i].posy = getY(x);
-                    x += step;
-                }
-            }
+            double area = 0;
+            public TrapeziumMethod() { }
             public double Integrate()
             {
-                s = (data[data.Length - 1].posy + data[0].posy) / 2;
-                for (int i = 1; i < data.Length - 1; i++)
+                area = (getY(leftBorder) + getY(rightBorder)) / 2;
+                for (double x = leftBorder + step; x < rightBorder; x++)
                 {
-                    s += data[i].posy;
+                    area += getY(x);
                 }
-                s *= step;
-                return s;
+                area *= step;
+                return area;
             }
         }
         class SimpsonMethod : IIntegral
         {
-            double s = 0, h = leftBorder + step / 2;
-            point[] data;
-            public SimpsonMethod()
-            {
-                double x = leftBorder;
-                data = new point[Convert.ToInt32(Math.Floor((rightBorder - leftBorder) / step) + 1)];
-                for (int i = 0; x <= rightBorder; i++)
-                {
-                    data[i].posx = x;
-                    data[i].posy = getY(x);
-                    x += step;
-                }
-            }
-
+            double area = 0;
+            public SimpsonMethod() { }
             public double Integrate()
             {
                 double sum = 0;
-                s += data[0].posy + data[data.Length - 1].posy;
-
-                for (int i = 1; i < data.Length - 1; i += 2)
+                area += getY(leftBorder)+getY(rightBorder);
+                for (double x = leftBorder+step/2; x < rightBorder; x += step)
                 {
-                    sum += data[i].posy;
+                    sum += getY(x);
                 }
                 sum *= 4.0;
-                s +=sum;
+                area += sum;
                 sum = 0;
-                for (int i = 2; i < data.Length - 1; i += 2)
+                for (double x = leftBorder+step; x < rightBorder; x += step)
                 {
-                    sum += data[i].posy;
+                    sum += getY(x);
                 }
                 sum *= 2.0;
-                s +=sum;
-                s *= (step / 3.0);
-                return s;
+                area += sum;
+                area *= (step / 6);
+                return area;
             }
         }
         double TextBoxToDouble(TextBox textBox)
@@ -126,34 +97,27 @@ namespace WindowsFormsApp2
             if (textBox.Text == "") { return 0; }
             return Convert.ToDouble(textBox.Text);
         }
-        private void button1_Click(object sender, EventArgs e)
+        void drawGraph(Chart functionGraph)
         {
-            leftBorder = TextBoxToDouble(textBox1);
-            rightBorder = TextBoxToDouble(textBox2);
-            step = TextBoxToDouble(textBox3);
-            MidRectangleMethod method1 = new MidRectangleMethod();
-            TrapeziumMethod method2 = new TrapeziumMethod();
-            SimpsonMethod method3 = new SimpsonMethod();
-            point[] data;
-            label4.Text = "Площа Методом Середніх Прямокутників = " + Convert.ToString(method1.Integrate());
-            label5.Text = "Площа Методом Трапецій = " + Convert.ToString(method2.Integrate());
-            label6.Text = "Площа Методом Сімпсона = " + Convert.ToString(method3.Integrate());
-            double x = leftBorder;
-            data = new point[Convert.ToInt32(Math.Ceiling((rightBorder - leftBorder) / 0.1) + 1)];
-            for (int i = 0; i < data.Length; i++)
+            double graphStep = (rightBorder - leftBorder) / 1000;
+            functionGraph.Series[0].Points.Clear();
+            for (double i = leftBorder; i <= rightBorder; i += graphStep)
             {
-                data[i].posx = x;
-                if (i == data.Length - 1) {
-                    data[i].posx = rightBorder;
-                }
-                data[i].posy = getY(x);
-                x += 0.1;
+                functionGraph.Series[0].Points.AddXY(i, getY(i));
             }
-            chart1.Series[0].Points.Clear();
-            for (int i = 0; i < data.Length; i++)
-            {
-                chart1.Series[0].Points.AddXY(data[i].posx,data[i].posy);
-            }
+        }
+        private void integrateButton(object sender, EventArgs e)
+        {
+            leftBorder = TextBoxToDouble(leftBorderIN);
+            rightBorder = TextBoxToDouble(rightBorderIN);
+            step = (rightBorder - leftBorder) / TextBoxToDouble(numOfPartitioinIN);
+            MidRectangleMethod methodRectangle = new MidRectangleMethod();
+            TrapeziumMethod methodTrapezium = new TrapeziumMethod();
+            SimpsonMethod methodSimpson = new SimpsonMethod();
+            rectangeMethodArea.Text = "Площа Методом Середніх Прямокутників = " + Convert.ToString(methodRectangle.Integrate());
+            trapeziumMethodArea.Text = "Площа Методом Трапецій = " + Convert.ToString(methodTrapezium.Integrate());
+            simpsonMethodArea.Text = "Площа Методом Сімпсона = " + Convert.ToString(methodSimpson.Integrate());
+            drawGraph(functionGraph);
         }
     }
 }

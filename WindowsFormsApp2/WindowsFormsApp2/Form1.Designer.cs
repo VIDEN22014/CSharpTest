@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.leftBorderIN = new System.Windows.Forms.TextBox();
+            this.func1 = new System.Windows.Forms.RadioButton();
+            this.functionGraph = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.rightBorderIN = new System.Windows.Forms.TextBox();
+            this.numOfPartitioinIN = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.func2 = new System.Windows.Forms.RadioButton();
+            this.func3 = new System.Windows.Forms.RadioButton();
+            this.rectangeMethodArea = new System.Windows.Forms.Label();
+            this.trapeziumMethodArea = new System.Windows.Forms.Label();
+            this.simpsonMethodArea = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.functionGraph)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -56,7 +56,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Інтегрувати";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.integrateButton);
             // 
             // label1
             // 
@@ -67,55 +67,55 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Ліва межа";
             // 
-            // textBox1
+            // leftBorderIN
             // 
-            this.textBox1.Location = new System.Drawing.Point(362, 62);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 2;
+            this.leftBorderIN.Location = new System.Drawing.Point(362, 62);
+            this.leftBorderIN.Name = "leftBorderIN";
+            this.leftBorderIN.Size = new System.Drawing.Size(100, 22);
+            this.leftBorderIN.TabIndex = 2;
             // 
-            // radioButton1
+            // func1
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(362, 146);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(91, 20);
-            this.radioButton1.TabIndex = 3;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Функція 1";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.func1.AutoSize = true;
+            this.func1.Checked = true;
+            this.func1.Location = new System.Drawing.Point(362, 146);
+            this.func1.Name = "func1";
+            this.func1.Size = new System.Drawing.Size(60, 20);
+            this.func1.TabIndex = 3;
+            this.func1.TabStop = true;
+            this.func1.Text = "sin(x)";
+            this.func1.UseVisualStyleBackColor = true;
             // 
-            // chart1
+            // functionGraph
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            this.chart1.Location = new System.Drawing.Point(509, 43);
-            this.chart1.Name = "chart1";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Name = "Series1";
-            this.chart1.Series.Add(series3);
-            this.chart1.Size = new System.Drawing.Size(478, 438);
-            this.chart1.TabIndex = 4;
-            this.chart1.Text = "chart1";
-            title3.Name = "Title1";
-            title3.Text = "Графік Функції";
-            this.chart1.Titles.Add(title3);
+            chartArea1.Name = "ChartArea1";
+            this.functionGraph.ChartAreas.Add(chartArea1);
+            this.functionGraph.Location = new System.Drawing.Point(509, 43);
+            this.functionGraph.Name = "functionGraph";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Name = "Series1";
+            this.functionGraph.Series.Add(series1);
+            this.functionGraph.Size = new System.Drawing.Size(478, 438);
+            this.functionGraph.TabIndex = 4;
+            this.functionGraph.Text = "chart1";
+            title1.Name = "Title1";
+            title1.Text = "Графік Функції";
+            this.functionGraph.Titles.Add(title1);
             // 
-            // textBox2
+            // rightBorderIN
             // 
-            this.textBox2.Location = new System.Drawing.Point(362, 90);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 22);
-            this.textBox2.TabIndex = 5;
+            this.rightBorderIN.Location = new System.Drawing.Point(362, 90);
+            this.rightBorderIN.Name = "rightBorderIN";
+            this.rightBorderIN.Size = new System.Drawing.Size(100, 22);
+            this.rightBorderIN.TabIndex = 5;
             // 
-            // textBox3
+            // numOfPartitioinIN
             // 
-            this.textBox3.Location = new System.Drawing.Point(362, 118);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 22);
-            this.textBox3.TabIndex = 6;
+            this.numOfPartitioinIN.Location = new System.Drawing.Point(362, 118);
+            this.numOfPartitioinIN.Name = "numOfPartitioinIN";
+            this.numOfPartitioinIN.Size = new System.Drawing.Size(100, 22);
+            this.numOfPartitioinIN.TabIndex = 6;
             // 
             // label2
             // 
@@ -129,81 +129,81 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(317, 121);
+            this.label3.Location = new System.Drawing.Point(222, 118);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 16);
+            this.label3.Size = new System.Drawing.Size(134, 16);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Крок";
+            this.label3.Text = "Кількість Розбиттів";
             // 
-            // radioButton2
+            // func2
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(362, 172);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(91, 20);
-            this.radioButton2.TabIndex = 9;
-            this.radioButton2.Text = "Функція 2";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.func2.AutoSize = true;
+            this.func2.Location = new System.Drawing.Point(362, 172);
+            this.func2.Name = "func2";
+            this.func2.Size = new System.Drawing.Size(76, 20);
+            this.func2.TabIndex = 9;
+            this.func2.Text = "sqrt(x)-1";
+            this.func2.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // func3
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(362, 198);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(91, 20);
-            this.radioButton3.TabIndex = 10;
-            this.radioButton3.Text = "Функція 3";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.func3.AutoSize = true;
+            this.func3.Location = new System.Drawing.Point(362, 198);
+            this.func3.Name = "func3";
+            this.func3.Size = new System.Drawing.Size(91, 20);
+            this.func3.TabIndex = 10;
+            this.func3.Text = "Функція 3";
+            this.func3.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // rectangeMethodArea
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(52, 323);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(288, 16);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Площа Методом Середніх Прямокутників = ";
+            this.rectangeMethodArea.AutoSize = true;
+            this.rectangeMethodArea.Location = new System.Drawing.Point(52, 323);
+            this.rectangeMethodArea.Name = "rectangeMethodArea";
+            this.rectangeMethodArea.Size = new System.Drawing.Size(288, 16);
+            this.rectangeMethodArea.TabIndex = 11;
+            this.rectangeMethodArea.Text = "Площа Методом Середніх Прямокутників = ";
             // 
-            // label5
+            // trapeziumMethodArea
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(151, 354);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(189, 16);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Площа Методом Трапецій = ";
+            this.trapeziumMethodArea.AutoSize = true;
+            this.trapeziumMethodArea.Location = new System.Drawing.Point(151, 354);
+            this.trapeziumMethodArea.Name = "trapeziumMethodArea";
+            this.trapeziumMethodArea.Size = new System.Drawing.Size(189, 16);
+            this.trapeziumMethodArea.TabIndex = 12;
+            this.trapeziumMethodArea.Text = "Площа Методом Трапецій = ";
             // 
-            // label6
+            // simpsonMethodArea
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(151, 386);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(189, 16);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Площа Методом Сімпсона = ";
+            this.simpsonMethodArea.AutoSize = true;
+            this.simpsonMethodArea.Location = new System.Drawing.Point(151, 386);
+            this.simpsonMethodArea.Name = "simpsonMethodArea";
+            this.simpsonMethodArea.Size = new System.Drawing.Size(189, 16);
+            this.simpsonMethodArea.TabIndex = 13;
+            this.simpsonMethodArea.Text = "Площа Методом Сімпсона = ";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(999, 545);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.radioButton3);
-            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.simpsonMethodArea);
+            this.Controls.Add(this.trapeziumMethodArea);
+            this.Controls.Add(this.rectangeMethodArea);
+            this.Controls.Add(this.func3);
+            this.Controls.Add(this.func2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.chart1);
-            this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.numOfPartitioinIN);
+            this.Controls.Add(this.rightBorderIN);
+            this.Controls.Add(this.functionGraph);
+            this.Controls.Add(this.func1);
+            this.Controls.Add(this.leftBorderIN);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.functionGraph)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,18 +213,18 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox leftBorderIN;
+        private System.Windows.Forms.RadioButton func1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart functionGraph;
+        private System.Windows.Forms.TextBox rightBorderIN;
+        private System.Windows.Forms.TextBox numOfPartitioinIN;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.RadioButton func2;
+        private System.Windows.Forms.RadioButton func3;
+        private System.Windows.Forms.Label rectangeMethodArea;
+        private System.Windows.Forms.Label trapeziumMethodArea;
+        private System.Windows.Forms.Label simpsonMethodArea;
     }
 }
 
