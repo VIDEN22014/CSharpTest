@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.leftBorderIN = new System.Windows.Forms.TextBox();
@@ -89,20 +89,20 @@
             // 
             // functionGraph
             // 
-            chartArea1.Name = "ChartArea1";
-            this.functionGraph.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.functionGraph.ChartAreas.Add(chartArea2);
             this.functionGraph.Location = new System.Drawing.Point(509, 43);
             this.functionGraph.Name = "functionGraph";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Name = "Series1";
-            this.functionGraph.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Name = "Series1";
+            this.functionGraph.Series.Add(series2);
             this.functionGraph.Size = new System.Drawing.Size(478, 438);
             this.functionGraph.TabIndex = 4;
             this.functionGraph.Text = "chart1";
-            title1.Name = "Title1";
-            title1.Text = "Графік Функції на Заданому Проміжку";
-            this.functionGraph.Titles.Add(title1);
+            title2.Name = "Title1";
+            title2.Text = "Графік Функції на Заданому Проміжку";
+            this.functionGraph.Titles.Add(title2);
             // 
             // rightBorderIN
             // 
@@ -130,11 +130,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(222, 118);
+            this.label3.Location = new System.Drawing.Point(219, 118);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(134, 16);
+            this.label3.Size = new System.Drawing.Size(137, 16);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Кількість Розбиттів";
+            this.label3.Text = "Кількість Інтервалів";
             // 
             // func2
             // 
@@ -186,7 +186,7 @@
             // ethaloneIntegralArea
             // 
             this.ethaloneIntegralArea.AutoSize = true;
-            this.ethaloneIntegralArea.Location = new System.Drawing.Point(207, 406);
+            this.ethaloneIntegralArea.Location = new System.Drawing.Point(207, 408);
             this.ethaloneIntegralArea.Name = "ethaloneIntegralArea";
             this.ethaloneIntegralArea.Size = new System.Drawing.Size(133, 16);
             this.ethaloneIntegralArea.TabIndex = 14;

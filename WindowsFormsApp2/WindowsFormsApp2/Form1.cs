@@ -133,15 +133,18 @@ namespace WindowsFormsApp2
         {
             leftBorder = TextBoxToDouble(leftBorderIN);
             rightBorder = TextBoxToDouble(rightBorderIN);
-            step = (rightBorder - leftBorder) / TextBoxToDouble(numOfPartitioinIN);
-            MidRectangleMethod methodRectangle = new MidRectangleMethod();
-            TrapeziumMethod methodTrapezium = new TrapeziumMethod();
-            SimpsonMethod methodSimpson = new SimpsonMethod();
-            rectangeMethodArea.Text = "Площа Методом Середніх Прямокутників = " + Convert.ToString(methodRectangle.Integrate());
-            trapeziumMethodArea.Text = "Площа Методом Трапецій = " + Convert.ToString(methodTrapezium.Integrate());
-            simpsonMethodArea.Text = "Площа Методом Сімпсона = " + Convert.ToString(methodSimpson.Integrate());
-            ethaloneIntegralArea.Text = "Еталонна Площа = " + ethaloneIntegral();
-            drawGraph(functionGraph);
+            if (TextBoxToDouble(numOfPartitioinIN) > 0 && leftBorder <= rightBorder)
+            {
+                step = (rightBorder - leftBorder) / TextBoxToDouble(numOfPartitioinIN);
+                MidRectangleMethod methodRectangle = new MidRectangleMethod();
+                TrapeziumMethod methodTrapezium = new TrapeziumMethod();
+                SimpsonMethod methodSimpson = new SimpsonMethod();
+                rectangeMethodArea.Text = "Площа Методом Середніх Прямокутників = " + Convert.ToString(methodRectangle.Integrate());
+                trapeziumMethodArea.Text = "Площа Методом Трапецій = " + Convert.ToString(methodTrapezium.Integrate());
+                simpsonMethodArea.Text = "Площа Методом Сімпсона = " + Convert.ToString(methodSimpson.Integrate());
+                ethaloneIntegralArea.Text = "Еталонна Площа = " + ethaloneIntegral();
+                drawGraph(functionGraph);
+            }
         }
     }
 }
