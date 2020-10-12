@@ -133,7 +133,7 @@ namespace WindowsFormsApp2
         {
             leftBorder = TextBoxToDouble(leftBorderIN);
             rightBorder = TextBoxToDouble(rightBorderIN);
-            if (TextBoxToDouble(numOfPartitioinIN) > 0 && leftBorder <= rightBorder)
+            if (TextBoxToDouble(numOfPartitioinIN) > 0 && leftBorder < rightBorder)
             {
                 step = (rightBorder - leftBorder) / TextBoxToDouble(numOfPartitioinIN);
                 MidRectangleMethod methodRectangle = new MidRectangleMethod();
