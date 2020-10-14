@@ -175,5 +175,10 @@ namespace WindowsFormsApp2
             group21.Sort("aGe");
             group21.Display(0, label1);
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
