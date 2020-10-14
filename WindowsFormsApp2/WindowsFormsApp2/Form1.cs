@@ -1,13 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp2
@@ -55,7 +47,6 @@ namespace WindowsFormsApp2
                 return "";
             }
         }
-
         class StudentsGroup
         {
             string nameOfGroup { get; set; }
@@ -108,7 +99,6 @@ namespace WindowsFormsApp2
                     }
                 }
             }
-
             public void Display(Label label)
             {
                 string s = "";
@@ -162,28 +152,30 @@ namespace WindowsFormsApp2
                 return 0;
             });
         }
-
-        int TextBoxToInt(TextBox textBox) {
-            if (textBox.Text != "") {
+        int TextBoxToInt(TextBox textBox)
+        {
+            if (textBox.Text != "")
+            {
                 return Convert.ToInt32(textBox.Text);
             }
             return 0;
         }
-        double TextBoxToDouble(TextBox textBox) {
+        double TextBoxToDouble(TextBox textBox)
+        {
             if (textBox.Text != "")
             {
                 return Convert.ToDouble(textBox.Text);
             }
             return 0;
         }
-        string TextBoxToString(TextBox textBox) {
+        string TextBoxToString(TextBox textBox)
+        {
             if (textBox.Text != "")
             {
                 return Convert.ToString(textBox.Text);
             }
             return "";
         }
-
         private void addButton(object sender, EventArgs e)
         {
             string studentName = "";
@@ -197,38 +189,20 @@ namespace WindowsFormsApp2
             group21 += student;
             group21.Display(groupOutput);
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void removeButton(object sender, EventArgs e)
         {
             if (group21.group.Length == 0) { return; }
             group21 -= group21.group[group21.group.Length - 1];
             group21.Display(groupOutput);
         }
-
         private void sortButton(object sender, EventArgs e)
         {
             group21.Sort(TextBoxToString(sortTypeIN));
             group21.Display(groupOutput);
         }
-
         private void filterButton(object sender, EventArgs e)
         {
             group21.Display(TextBoxToInt(filterTypeIN), groupOutput);
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

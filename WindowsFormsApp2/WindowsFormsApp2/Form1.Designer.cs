@@ -65,7 +65,6 @@
             this.groupOutput.Size = new System.Drawing.Size(121, 16);
             this.groupOutput.TabIndex = 1;
             this.groupOutput.Text = "Поле Для Виводу";
-            this.groupOutput.Click += new System.EventHandler(this.label1_Click);
             // 
             // button2
             // 
@@ -136,7 +135,6 @@
             this.sortTypeIN.Name = "sortTypeIN";
             this.sortTypeIN.Size = new System.Drawing.Size(106, 22);
             this.sortTypeIN.TabIndex = 11;
-            this.sortTypeIN.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
             // label3
             // 
@@ -224,7 +222,6 @@
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
