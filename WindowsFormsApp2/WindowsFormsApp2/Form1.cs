@@ -25,6 +25,7 @@ namespace WindowsFormsApp2
         delegate void SortDel(StudentsGroup a);
         delegate bool IsHigher(int x);
         static Dictionary<string, SortDel> SortByType = new Dictionary<string, SortDel>();
+        StudentsGroup group21 = new StudentsGroup("CS-21");
         class Student
         {
             public string name { get; }
@@ -162,18 +163,39 @@ namespace WindowsFormsApp2
             });
         }
 
+        int TextBoxToInt(TextBox textBox) {
+            if (textBox.Text != "") {
+                return Convert.ToInt32(textBox.Text);
+            }
+            return 0;
+        }
+        double TextBoxToDouble(TextBox textBox) {
+            if (textBox.Text != "")
+            {
+                return Convert.ToDouble(textBox.Text);
+            }
+            return 0;
+        }
+        string TextBoxToString(TextBox textBox) {
+            if (textBox.Text != "")
+            {
+                return Convert.ToString(textBox.Text);
+            }
+            return "";
+        }
+
         private void addButton(object sender, EventArgs e)
         {
-            StudentsGroup group21 = new StudentsGroup("CS-21");
-            Student student1 = new Student("Petro", 28, 56, 3);
-            Student student2 = new Student("Ivan", 18, 57, 4);
-            Student student3 = new Student("Bohdan", 19, 50, 2);
-            Student student4 = new Student("Stepan", 20, 59, 1);
-            Student student5 = new Student("Semen", 22, 57, 1);
-            group21 += student1;
-            group21 -= student1;
-            group21.Sort("aGe");
-            group21.Display(0, label1);
+            string studentName = "";
+            int studentAge = 0, studentMark = 0;
+            double studentMass = 0;
+            studentName = TextBoxToString(studentNameIN);
+            studentAge = TextBoxToInt(studentAgeIN);
+            studentMass = TextBoxToDouble(studentMassIN);
+            studentMark = TextBoxToInt(studentMarkIN);
+            Student student = new Student(studentName, studentAge, studentMass, studentMark);
+            group21 += student;
+            group21.Display(groupOutput);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -183,20 +205,28 @@ namespace WindowsFormsApp2
 
         private void removeButton(object sender, EventArgs e)
         {
-
+            if (group21.group.Length == 0) { return; }
+            group21 -= group21.group[group21.group.Length - 1];
+            group21.Display(groupOutput);
         }
 
         private void sortButton(object sender, EventArgs e)
         {
-
+            group21.Sort(TextBoxToString(sortTypeIN));
+            group21.Display(groupOutput);
         }
 
         private void filterButton(object sender, EventArgs e)
         {
-
+            group21.Display(TextBoxToInt(filterTypeIN), groupOutput);
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
         {
 
         }
