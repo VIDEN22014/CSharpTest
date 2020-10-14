@@ -162,7 +162,7 @@ namespace WindowsFormsApp2
             });
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void addButton(object sender, EventArgs e)
         {
             StudentsGroup group21 = new StudentsGroup("CS-21");
             Student student1 = new Student("Petro", 28, 56, 3);
@@ -177,6 +177,26 @@ namespace WindowsFormsApp2
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void removeButton(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sortButton(object sender, EventArgs e)
+        {
+
+        }
+
+        private void filterButton(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
