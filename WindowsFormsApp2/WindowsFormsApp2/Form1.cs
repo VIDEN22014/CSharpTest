@@ -69,11 +69,11 @@ namespace WindowsFormsApp2
                 group = new Student[0];
                 this.nameOfGroup = nameOfGroup;
             }
-            public static StudentsGroup operator +(StudentsGroup c1, Student c2)
+            public static StudentsGroup operator +(StudentsGroup gr, Student student)
             {
-                Array.Resize(ref c1.group, c1.group.Length + 1);
-                c1.group[c1.group.Length - 1] = c2;
-                return c1;
+                Array.Resize(ref gr.group, gr.group.Length + 1);
+                gr.group[gr.group.Length - 1] = student;
+                return gr;
             }
             public static StudentsGroup operator -(StudentsGroup gr, Student student)
             {
