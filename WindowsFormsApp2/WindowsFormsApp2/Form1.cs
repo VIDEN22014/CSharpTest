@@ -171,10 +171,7 @@ namespace WindowsFormsApp2
             Student student4 = new Student("Stepan", 20, 59, 1);
             Student student5 = new Student("Semen", 22, 57, 1);
             group21 += student1;
-            group21 += student2;
-            group21 += student3;
-            group21 += student4;
-            group21 -= student4;
+            group21 -= student1;
             group21.Sort("aGe");
             group21.Display(0, label1);
         }
