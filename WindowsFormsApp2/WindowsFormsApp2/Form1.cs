@@ -15,14 +15,14 @@ namespace WindowsFormsApp2
             SortByType.Add("mass", SortByMass);
             SortByType.Add("mark", SortByMark);
             academicFailure += SendWarningMail;
-            dataGrid = dataGridView1;
+            studentsDataGrid = dataGridView1;
         }
         static DeanOfficeEmployee employee1 = new DeanOfficeEmployee("Пилипів Володимир Михайлович", "pylypiv.v@gmail.com");
         static DeanOfficeEmployee employee2 = new DeanOfficeEmployee("Соломко Андрій Васильович", "solomko.a@pnu.edu.ua");
         static DeanOfficeEmployee employee3 = new DeanOfficeEmployee("Бондаренко Ірина Ігорівна", "bondarenko.i@pnu.edu.ua");
         DeanOfficeEmployee[] deansOffice = new DeanOfficeEmployee[3] { employee1, employee2, employee3 };
         StudentsGroup group21 = new StudentsGroup("CS-21");
-        static DataGridView dataGrid = new DataGridView();
+        static DataGridView studentsDataGrid = new DataGridView();
 
         delegate void SendMessageDel(string groupName, string studentName);
         event SendMessageDel academicFailure;
@@ -36,7 +36,7 @@ namespace WindowsFormsApp2
             emailImitationOUT.Text = "Імітація Розсилки:\n";
             foreach (DeanOfficeEmployee i in deansOffice)
             {
-                emailImitationOUT.Text += "To: " + i.emailAddress + "\nText: Шановний" + i.name + ", Судент Групи: " + groupName;
+                emailImitationOUT.Text += "To: " + i.emailAddress + "\nText: Шановний " + i.name + ", Судент Групи: " + groupName;
                 emailImitationOUT.Text += " " + studentName + " отримав незадовільну оцінку з предмету С#, прошу прийняти міри\n\n";
             }
         }
@@ -75,7 +75,7 @@ namespace WindowsFormsApp2
             {
                 if (func(markFromCsharp))
                 {
-                    dataGrid.Rows.Add(name, age, mass, markFromCsharp);
+                    studentsDataGrid.Rows.Add(name, age, mass, markFromCsharp);
                 }
             }
         }
@@ -133,7 +133,7 @@ namespace WindowsFormsApp2
             }
             public void Display(int mark, Label label)
             {
-                dataGrid.Rows.Clear();
+                studentsDataGrid.Rows.Clear();
                 foreach (Student i in group)
                 {
                     i.Display(x => x > mark);
@@ -226,11 +226,6 @@ namespace WindowsFormsApp2
         private void filterButton(object sender, EventArgs e)
         {
             group21.Display(TextBoxToInt(filterTypeIN), groupOutput);
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
