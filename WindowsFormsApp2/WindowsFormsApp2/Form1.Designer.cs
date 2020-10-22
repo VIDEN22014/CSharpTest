@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.groupOutput = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -45,11 +46,20 @@
             this.filterTypeIN = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.emailImitationOUT = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(271, 186);
+            this.button1.Location = new System.Drawing.Point(131, 60);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(106, 69);
             this.button1.TabIndex = 0;
@@ -60,15 +70,15 @@
             // groupOutput
             // 
             this.groupOutput.AutoSize = true;
-            this.groupOutput.Location = new System.Drawing.Point(428, 158);
+            this.groupOutput.Location = new System.Drawing.Point(340, 9);
             this.groupOutput.Name = "groupOutput";
-            this.groupOutput.Size = new System.Drawing.Size(121, 16);
+            this.groupOutput.Size = new System.Drawing.Size(179, 16);
             this.groupOutput.TabIndex = 1;
-            this.groupOutput.Text = "Поле Для Виводу";
+            this.groupOutput.Text = "Інформація Про Студентів";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(159, 186);
+            this.button2.Location = new System.Drawing.Point(12, 58);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(106, 69);
             this.button2.TabIndex = 2;
@@ -79,7 +89,7 @@
             // studentNameIN
             // 
             this.studentNameIN.AccessibleDescription = "Бан";
-            this.studentNameIN.Location = new System.Drawing.Point(159, 158);
+            this.studentNameIN.Location = new System.Drawing.Point(12, 30);
             this.studentNameIN.Name = "studentNameIN";
             this.studentNameIN.Size = new System.Drawing.Size(117, 22);
             this.studentNameIN.TabIndex = 4;
@@ -87,7 +97,7 @@
             // studentAgeIN
             // 
             this.studentAgeIN.AccessibleDescription = "Бан";
-            this.studentAgeIN.Location = new System.Drawing.Point(282, 158);
+            this.studentAgeIN.Location = new System.Drawing.Point(135, 30);
             this.studentAgeIN.Name = "studentAgeIN";
             this.studentAgeIN.Size = new System.Drawing.Size(27, 22);
             this.studentAgeIN.TabIndex = 5;
@@ -95,7 +105,7 @@
             // studentMassIN
             // 
             this.studentMassIN.AccessibleDescription = "Бан";
-            this.studentMassIN.Location = new System.Drawing.Point(315, 158);
+            this.studentMassIN.Location = new System.Drawing.Point(168, 30);
             this.studentMassIN.Name = "studentMassIN";
             this.studentMassIN.Size = new System.Drawing.Size(44, 22);
             this.studentMassIN.TabIndex = 6;
@@ -103,14 +113,14 @@
             // studentMarkIN
             // 
             this.studentMarkIN.AccessibleDescription = "Бан";
-            this.studentMarkIN.Location = new System.Drawing.Point(365, 158);
+            this.studentMarkIN.Location = new System.Drawing.Point(218, 30);
             this.studentMarkIN.Name = "studentMarkIN";
             this.studentMarkIN.Size = new System.Drawing.Size(57, 22);
             this.studentMarkIN.TabIndex = 7;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(159, 307);
+            this.button3.Location = new System.Drawing.Point(12, 179);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(106, 36);
             this.button3.TabIndex = 8;
@@ -120,7 +130,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(278, 307);
+            this.button4.Location = new System.Drawing.Point(131, 179);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(106, 36);
             this.button4.TabIndex = 9;
@@ -131,7 +141,7 @@
             // sortTypeIN
             // 
             this.sortTypeIN.AccessibleDescription = "Бан";
-            this.sortTypeIN.Location = new System.Drawing.Point(159, 279);
+            this.sortTypeIN.Location = new System.Drawing.Point(12, 151);
             this.sortTypeIN.Name = "sortTypeIN";
             this.sortTypeIN.Size = new System.Drawing.Size(106, 22);
             this.sortTypeIN.TabIndex = 11;
@@ -139,7 +149,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(156, 139);
+            this.label3.Location = new System.Drawing.Point(9, 11);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(113, 16);
             this.label3.TabIndex = 12;
@@ -148,7 +158,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(279, 139);
+            this.label4.Location = new System.Drawing.Point(132, 11);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(27, 16);
             this.label4.TabIndex = 13;
@@ -157,7 +167,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(312, 139);
+            this.label5.Location = new System.Drawing.Point(165, 11);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 16);
             this.label5.TabIndex = 14;
@@ -166,7 +176,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(362, 139);
+            this.label6.Location = new System.Drawing.Point(215, 11);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(52, 16);
             this.label6.TabIndex = 15;
@@ -175,7 +185,7 @@
             // filterTypeIN
             // 
             this.filterTypeIN.AccessibleDescription = "Бан";
-            this.filterTypeIN.Location = new System.Drawing.Point(278, 279);
+            this.filterTypeIN.Location = new System.Drawing.Point(131, 151);
             this.filterTypeIN.Name = "filterTypeIN";
             this.filterTypeIN.Size = new System.Drawing.Size(106, 22);
             this.filterTypeIN.TabIndex = 16;
@@ -183,7 +193,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(156, 260);
+            this.label1.Location = new System.Drawing.Point(9, 132);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(115, 16);
             this.label1.TabIndex = 17;
@@ -192,17 +202,76 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(275, 260);
+            this.label2.Location = new System.Drawing.Point(128, 132);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(102, 16);
             this.label2.TabIndex = 18;
             this.label2.Text = "Тип Фільтрації";
+            // 
+            // emailImitationOUT
+            // 
+            this.emailImitationOUT.AutoSize = true;
+            this.emailImitationOUT.Location = new System.Drawing.Point(9, 231);
+            this.emailImitationOUT.Name = "emailImitationOUT";
+            this.emailImitationOUT.Size = new System.Drawing.Size(125, 16);
+            this.emailImitationOUT.TabIndex = 19;
+            this.emailImitationOUT.Text = "Імітація Розсилки:";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4});
+            this.dataGridView1.Location = new System.Drawing.Point(284, 30);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 57;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(475, 217);
+            this.dataGridView1.TabIndex = 20;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Name";
+            this.Column1.MinimumWidth = 7;
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 140;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Age";
+            this.Column2.MinimumWidth = 7;
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 50;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Mass";
+            this.Column3.MinimumWidth = 7;
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 50;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Mark";
+            this.Column4.MinimumWidth = 7;
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 50;
+            // 
+            // form1BindingSource
+            // 
+            this.form1BindingSource.DataSource = typeof(WindowsFormsApp2.Form1);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1088, 614);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.emailImitationOUT);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.filterTypeIN);
@@ -222,6 +291,8 @@
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -246,6 +317,13 @@
         private System.Windows.Forms.TextBox filterTypeIN;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label emailImitationOUT;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource form1BindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
 }
 

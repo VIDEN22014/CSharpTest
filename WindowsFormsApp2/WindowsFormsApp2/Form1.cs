@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp2
@@ -13,11 +14,43 @@ namespace WindowsFormsApp2
             SortByType.Add("age", SortByAge);
             SortByType.Add("mass", SortByMass);
             SortByType.Add("mark", SortByMark);
+            academicFailure += SendWarningMail;
+            dataGrid = dataGridView1;
         }
+        static DeanOfficeEmployee employee1 = new DeanOfficeEmployee("Пилипів Володимир Михайлович", "pylypiv.v@gmail.com");
+        static DeanOfficeEmployee employee2 = new DeanOfficeEmployee("Соломко Андрій Васильович", "solomko.a@pnu.edu.ua");
+        static DeanOfficeEmployee employee3 = new DeanOfficeEmployee("Бондаренко Ірина Ігорівна", "bondarenko.i@pnu.edu.ua");
+        DeanOfficeEmployee[] deansOffice = new DeanOfficeEmployee[3] { employee1, employee2, employee3 };
+        StudentsGroup group21 = new StudentsGroup("CS-21");
+        static DataGridView dataGrid = new DataGridView();
+
+        delegate void SendMessageDel(string groupName, string studentName);
+        event SendMessageDel academicFailure;
         delegate void SortDel(StudentsGroup a);
         delegate bool IsHigher(int x);
+
         static Dictionary<string, SortDel> SortByType = new Dictionary<string, SortDel>();
-        StudentsGroup group21 = new StudentsGroup("CS-21");
+
+        void SendWarningMail(string groupName, string studentName)
+        {
+            emailImitationOUT.Text = "Імітація Розсилки:\n";
+            foreach (DeanOfficeEmployee i in deansOffice)
+            {
+                emailImitationOUT.Text += "To: " + i.emailAddress + "\nText: Шановний" + i.name + ", Судент Групи: " + groupName;
+                emailImitationOUT.Text += " " + studentName + " отримав незадовільну оцінку з предмету С#, прошу прийняти міри\n\n";
+            }
+        }
+
+        class DeanOfficeEmployee
+        {
+            public string name { get; }
+            public string emailAddress { get; }
+            public DeanOfficeEmployee(string name, string emailAddress)
+            {
+                this.name = name;
+                this.emailAddress = emailAddress;
+            }
+        }
         class Student
         {
             public string name { get; }
@@ -38,18 +71,17 @@ namespace WindowsFormsApp2
                 this.mass = mass;
                 this.markFromCsharp = markFromCsharp;
             }
-            public string Display(IsHigher func)
+            public void Display(IsHigher func)
             {
                 if (func(markFromCsharp))
                 {
-                    return "Name: " + name + '\t' + " Age: " + age + '\t' + " Mass: " + mass + '\t' + " Mark: " + markFromCsharp + "\n";
+                    dataGrid.Rows.Add(name, age, mass, markFromCsharp);
                 }
-                return "";
             }
         }
         class StudentsGroup
         {
-            string nameOfGroup { get; set; }
+            public string nameOfGroup { get; }
             public Student[] group;
             public StudentsGroup()
             {
@@ -99,23 +131,13 @@ namespace WindowsFormsApp2
                     }
                 }
             }
-            public void Display(Label label)
-            {
-                string s = "";
-                foreach (Student i in group)
-                {
-                    s += i.Display(x => x > -1);
-                }
-                label.Text = s;
-            }
             public void Display(int mark, Label label)
             {
-                string s = "";
+                dataGrid.Rows.Clear();
                 foreach (Student i in group)
                 {
-                    s += i.Display(x => x > mark);
+                    i.Display(x => x > mark);
                 }
-                label.Text = s;
             }
         }
         void SortByName(StudentsGroup gr)
@@ -187,22 +209,28 @@ namespace WindowsFormsApp2
             studentMark = TextBoxToInt(studentMarkIN);
             Student student = new Student(studentName, studentAge, studentMass, studentMark);
             group21 += student;
-            group21.Display(groupOutput);
+            if (student.markFromCsharp < 3 && academicFailure != null) academicFailure(group21.nameOfGroup, student.name);
+            group21.Display(0, groupOutput);
         }
         private void removeButton(object sender, EventArgs e)
         {
             if (group21.group.Length == 0) { return; }
             group21 -= group21.group[group21.group.Length - 1];
-            group21.Display(groupOutput);
+            group21.Display(0, groupOutput);
         }
         private void sortButton(object sender, EventArgs e)
         {
             group21.Sort(TextBoxToString(sortTypeIN));
-            group21.Display(groupOutput);
+            group21.Display(0, groupOutput);
         }
         private void filterButton(object sender, EventArgs e)
         {
             group21.Display(TextBoxToInt(filterTypeIN), groupOutput);
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
