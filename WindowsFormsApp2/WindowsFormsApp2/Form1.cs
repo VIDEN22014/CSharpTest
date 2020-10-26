@@ -104,7 +104,7 @@ namespace WindowsFormsApp2
                 string s = "";
                 foreach (Student i in group)
                 {
-                    s += i.Display(x => x > -1);
+                    s += i.Display(x => x > x-1);
                 }
                 label.Text = s;
             }
