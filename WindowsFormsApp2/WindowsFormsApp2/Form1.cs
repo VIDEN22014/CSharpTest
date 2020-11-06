@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -7,109 +8,103 @@ namespace WindowsFormsApp2
 {
     public partial class Form1 : Form
     {
+        static PictureBox mainPictureBox = new PictureBox();
+        static Bitmap bmp = new Bitmap(10000, 10000);
+        static Graphics graph = Graphics.FromImage(bmp);
+        static Pen pen = new Pen(Color.Black);
+        static TextBox mainTextBox = new TextBox();
+        static Dictionary<char, Symbols> symbolByChar=new Dictionary<char, Symbols>(100);
+        static SymbolsGroup screen = new SymbolsGroup();
+
         public Form1()
         {
             InitializeComponent();
-            SortByType.Add("name", SortByName);
-            SortByType.Add("age", SortByAge);
-            SortByType.Add("mass", SortByMass);
-            SortByType.Add("mark", SortByMark);
-            academicFailure += SendWarningMail;
-            studentsDataGrid = dataGridView1;
+            mainPictureBox = pictureBox;
+            int[] b = { 0, 127, 144, 144, 144, 144, 144, 255 };
+            Symbols a = new Symbols(b);
+            symbolByChar.Add('a',a);
+            Symbols c = new Symbols('a');
+            Symbols d = new Symbols('a');
+            Symbols e = new Symbols('a');
+            Symbols f = new Symbols('a');
+            Symbols g = new Symbols('a');
+            Symbols h = new Symbols('a');
+            Symbols i = new Symbols('a');
+            Symbols j = new Symbols('a');
+            screen += c;
+            screen += d;
+            screen += e;
+            screen += f;
+            screen += g;
+            screen += h;
+            screen += i;
+            screen += j;
         }
-        static DeanOfficeEmployee employee1 = new DeanOfficeEmployee("Пилипів Володимир Михайлович", "pylypiv.v@gmail.com");
-        static DeanOfficeEmployee employee2 = new DeanOfficeEmployee("Соломко Андрій Васильович", "solomko.a@pnu.edu.ua");
-        static DeanOfficeEmployee employee3 = new DeanOfficeEmployee("Бондаренко Ірина Ігорівна", "bondarenko.i@pnu.edu.ua");
-        DeanOfficeEmployee[] deansOffice = new DeanOfficeEmployee[3] { employee1, employee2, employee3 };
-        StudentsGroup group21 = new StudentsGroup("CS-21");
-        static DataGridView studentsDataGrid = new DataGridView();
-
-        delegate void SendMessageDel(string groupName, string studentName);
-        event SendMessageDel academicFailure;
-        delegate void SortDel(StudentsGroup a);
-        delegate bool IsHigher(int x);
-
-        static Dictionary<string, SortDel> SortByType = new Dictionary<string, SortDel>();
-
-        void SendWarningMail(string groupName, string studentName)
+        class Symbols
         {
-            emailImitationOUT.Text = "Імітація Розсилки:\n";
-            foreach (DeanOfficeEmployee i in deansOffice)
+            public byte[] cell = new byte[8];
+            public Symbols()
             {
-                emailImitationOUT.Text += "To: " + i.emailAddress + "\nText: Шановний " + i.name + ", Судент Групи: " + groupName;
-                emailImitationOUT.Text += " " + studentName + " отримав незадовільну оцінку з предмету С#, прошу прийняти міри\n\n";
-            }
-        }
-
-        class DeanOfficeEmployee
-        {
-            public string name { get; }
-            public string emailAddress { get; }
-            public DeanOfficeEmployee(string name, string emailAddress)
-            {
-                this.name = name;
-                this.emailAddress = emailAddress;
-            }
-        }
-        class Student
-        {
-            public string name { get; }
-            public int age { get; }
-            public double mass { get; }
-            public int markFromCsharp { get; }
-            public Student()
-            {
-                name = "";
-                age = 0;
-                mass = 0;
-                markFromCsharp = 0;
-            }
-            public Student(string name, int age, double mass, int markFromCsharp)
-            {
-                this.name = name;
-                this.age = age;
-                this.mass = mass;
-                this.markFromCsharp = markFromCsharp;
-            }
-            public void Display(IsHigher func)
-            {
-                if (func(markFromCsharp))
+                for (int i = 0; i < 8; i++)
                 {
-                    studentsDataGrid.Rows.Add(name, age, mass, markFromCsharp);
+                    cell[i] = 0;
+                }
+            }
+            public Symbols(int[] massive)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    cell[i] = (byte)massive[i];
+                }
+            }
+            public Symbols(char index)
+            {
+
+                foreach (var item in symbolByChar)
+                {
+                    if (index==item.Key)
+                    {
+                        Copy(item.Value);
+                        return;
+                    }
+                }
+                for (int i = 0; i < 8; i++)
+                {
+                    cell[i] = 0;
+                }
+            }
+            public void Copy(Symbols temp) {
+                for (int i = 0; i < 8; i++)
+                {
+                    cell[i] = temp.cell[i];
                 }
             }
         }
-        class StudentsGroup
+        class SymbolsGroup
         {
-            public string nameOfGroup { get; }
-            public Student[] group;
-            public StudentsGroup()
+            public Symbols[] group;
+            public SymbolsGroup()
             {
-                group = new Student[0];
+                group = new Symbols[0];
             }
-            public StudentsGroup(string nameOfGroup)
-            {
-                group = new Student[0];
-                this.nameOfGroup = nameOfGroup;
-            }
-            public static StudentsGroup operator +(StudentsGroup gr, Student student)
+            public static SymbolsGroup operator +(SymbolsGroup gr, Symbols symbols)
             {
                 Array.Resize(ref gr.group, gr.group.Length + 1);
-                gr.group[gr.group.Length - 1] = student;
+                gr.group[gr.group.Length - 1] = symbols;
                 return gr;
             }
-            public static StudentsGroup operator -(StudentsGroup gr, Student student)
+            public static SymbolsGroup operator -(SymbolsGroup gr, Symbols symbols)
             {
                 bool isFind = false;
                 for (int i = 0; i < gr.group.Length; i++)
                 {
                     if (isFind)
                     {
-                        Student temp = gr.group[i];
+                        Symbols temp = gr.group[i];
                         gr.group[i] = gr.group[i - 1];
                         gr.group[i - 1] = temp;
                     }
-                    if (gr.group[i] == student)
+                    if (gr.group[i] == symbols)
                     {
                         isFind = true;
                     }
@@ -120,112 +115,104 @@ namespace WindowsFormsApp2
                 }
                 return gr;
             }
-            public void Sort(string sortType)
-            {
-                foreach (var i in SortByType)
+            public void Zsuv() {
+                byte temp = group[0].cell[0];
+                for (int i = 0; i < group.Length; i++)
                 {
-                    if (i.Key == sortType.ToLower())
+                    for (int j = 0; j < 8; j++)
                     {
-                        i.Value.Invoke(this);
-                        return;
+                        if (j==7)
+                        {
+                            if (i != group.Length - 1)
+                            {
+                                group[i].cell[j] = group[i + 1].cell[0];
+                            }
+                        }
+                        else
+                        {
+                            group[i].cell[j] = group[i].cell[j + 1];
+                        }
                     }
                 }
+                group[group.Length - 1].cell[7] = temp;
+
             }
-            public void Display(int mark, Label label)
-            {
-                studentsDataGrid.Rows.Clear();
-                foreach (Student i in group)
+            public void Draw() {
+                int size = 15;
+                int startx = 15;
+                int starty = 15*10;
+                graph.Clear(Color.Transparent);
+                for (int i = 0; i < 8; i++)
                 {
-                    i.Display(x => x > mark);
+                    for (int j = 0; j < 8; j++)
+                    {
+                        for (int k = 0; k < 8; k++)
+                        {
+                            Rectangle rect = new Rectangle(startx + j * size + i * 8 * size, starty - k * size, size, size);
+                            graph.DrawRectangle(pen, rect);
+                            byte v = (byte)(group[i].cell[j] & (byte)Math.Pow(2,k));
+                            byte zero = 0;
+                            if (!v.Equals (zero)) 
+                            {
+                                graph.FillRectangle(Brushes.Black, rect);
+                            }
+                        }
+                        Rectangle rectUp = new Rectangle(startx + j * size + i * 8 * size, starty + size, size, size);
+                        Rectangle rectDown = new Rectangle(startx + j * size + i * 8 * size, starty - 8 * size, size, size);
+                        graph.DrawRectangle(pen, rectUp);
+                        graph.DrawRectangle(pen, startx + j * size + i * 8 * size, starty + size, size, size);
+                        graph.DrawRectangle(pen, rectDown);
+                        graph.DrawRectangle(pen, startx + j * size + i * 8 * size, starty - 8 * size, size, size);
+                    }
+                }
+                mainPictureBox.Image = bmp;
+            }
+        }
+        int textBoxToInt(TextBox textBox) {
+            if (textBox.Text != "") {
+                if (Convert.ToInt32(textBox.Text) > 0)
+                {
+                    return Convert.ToInt32(textBox.Text);
                 }
             }
+            return 1000;
         }
-        void SortByName(StudentsGroup gr)
+
+        private void moveButton(object sender, EventArgs e)
         {
-            Array.Sort(gr.group, delegate (Student a, Student b)
-            {
-                return String.Compare(a.name, b.name);
-            });
+            screen.Zsuv();
+            screen.Draw();
         }
-        void SortByAge(StudentsGroup gr)
+
+        private void timerStartButton(object sender, EventArgs e)
         {
-            Array.Sort(gr.group, delegate (Student a, Student b)
-            {
-                if (a.age < b.age) { return 1; }
-                else if (a.age > b.age) { return -1; }
-                return 0;
-            });
+            timer1.Start();
         }
-        void SortByMass(StudentsGroup gr)
+
+        private void timerStopButton(object sender, EventArgs e)
         {
-            Array.Sort(gr.group, delegate (Student a, Student b)
-            {
-                if (a.mass < b.mass) { return 1; }
-                else if (a.mass > b.mass) { return -1; }
-                return 0;
-            });
+            timer1.Stop();
         }
-        void SortByMark(StudentsGroup gr)
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            Array.Sort(gr.group, delegate (Student a, Student b)
-            {
-                if (a.markFromCsharp < b.markFromCsharp) { return 1; }
-                else if (a.markFromCsharp > b.markFromCsharp) { return -1; }
-                return 0;
-            });
+            timer1.Interval = textBoxToInt(textBox1);
+            checkedListBox1.Items[0].ToString();
         }
-        int TextBoxToInt(TextBox textBox)
+
+        private void pictureBox_Click(object sender, EventArgs e)
         {
-            if (textBox.Text != "")
-            {
-                return Convert.ToInt32(textBox.Text);
-            }
-            return 0;
+
         }
-        double TextBoxToDouble(TextBox textBox)
+
+        private void Form1_Load(object sender, EventArgs e)
         {
-            if (textBox.Text != "")
-            {
-                return Convert.ToDouble(textBox.Text);
-            }
-            return 0;
+
         }
-        string TextBoxToString(TextBox textBox)
+
+        private void checkedListBox8_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (textBox.Text != "")
-            {
-                return Convert.ToString(textBox.Text);
-            }
-            return "";
-        }
-        private void addButton(object sender, EventArgs e)
-        {
-            string studentName = "";
-            int studentAge = 0, studentMark = 0;
-            double studentMass = 0;
-            studentName = TextBoxToString(studentNameIN);
-            studentAge = TextBoxToInt(studentAgeIN);
-            studentMass = TextBoxToDouble(studentMassIN);
-            studentMark = TextBoxToInt(studentMarkIN);
-            Student student = new Student(studentName, studentAge, studentMass, studentMark);
-            group21 += student;
-            if (student.markFromCsharp < 3 && academicFailure != null) academicFailure(group21.nameOfGroup, student.name);
-            group21.Display(0, groupOutput);
-        }
-        private void removeButton(object sender, EventArgs e)
-        {
-            if (group21.group.Length == 0) { return; }
-            group21 -= group21.group[group21.group.Length - 1];
-            group21.Display(0, groupOutput);
-        }
-        private void sortButton(object sender, EventArgs e)
-        {
-            group21.Sort(TextBoxToString(sortTypeIN));
-            group21.Display(0, groupOutput);
-        }
-        private void filterButton(object sender, EventArgs e)
-        {
-            group21.Display(TextBoxToInt(filterTypeIN), groupOutput);
+
         }
     }
 }
