@@ -33,33 +33,39 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.intervalIN = new System.Windows.Forms.TextBox();
+            this.symbolsReactorColumn0 = new System.Windows.Forms.CheckedListBox();
             this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
-            this.checkedListBox3 = new System.Windows.Forms.CheckedListBox();
-            this.checkedListBox4 = new System.Windows.Forms.CheckedListBox();
-            this.checkedListBox5 = new System.Windows.Forms.CheckedListBox();
-            this.checkedListBox6 = new System.Windows.Forms.CheckedListBox();
-            this.checkedListBox7 = new System.Windows.Forms.CheckedListBox();
-            this.checkedListBox8 = new System.Windows.Forms.CheckedListBox();
+            this.newSymbolKeyIN = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.screenSymbolsIN = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.symbolsReactorColumn1 = new System.Windows.Forms.CheckedListBox();
+            this.symbolsReactorColumn2 = new System.Windows.Forms.CheckedListBox();
+            this.symbolsReactorColumn3 = new System.Windows.Forms.CheckedListBox();
+            this.symbolsReactorColumn4 = new System.Windows.Forms.CheckedListBox();
+            this.symbolsReactorColumn5 = new System.Windows.Forms.CheckedListBox();
+            this.symbolsReactorColumn6 = new System.Windows.Forms.CheckedListBox();
+            this.symbolsReactorColumn7 = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(987, 35);
+            this.button1.Location = new System.Drawing.Point(724, 47);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(103, 23);
             this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
+            this.button1.Text = "TimerEvent";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.moveButton);
+            this.button1.Click += new System.EventHandler(this.timerEventButton);
             // 
             // timer1
             // 
-            this.timer1.Tick += new System.EventHandler(this.moveButton);
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timerEventButton);
             // 
             // button2
             // 
@@ -81,31 +87,31 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.timerStopButton);
             // 
-            // textBox1
+            // intervalIN
             // 
-            this.textBox1.Location = new System.Drawing.Point(222, 47);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 5;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.intervalIN.Location = new System.Drawing.Point(222, 47);
+            this.intervalIN.Name = "intervalIN";
+            this.intervalIN.Size = new System.Drawing.Size(124, 22);
+            this.intervalIN.TabIndex = 5;
+            this.intervalIN.TextChanged += new System.EventHandler(this.intervalIN_textChanged);
             // 
-            // checkedListBox1
+            // symbolsReactorColumn0
             // 
-            this.checkedListBox1.CheckOnClick = true;
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""});
-            this.checkedListBox1.Location = new System.Drawing.Point(30, 348);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(22, 157);
-            this.checkedListBox1.TabIndex = 6;
+            this.symbolsReactorColumn0.CheckOnClick = true;
+            this.symbolsReactorColumn0.FormattingEnabled = true;
+            this.symbolsReactorColumn0.Items.AddRange(new object[] {
+            "7",
+            "6",
+            "5",
+            "4",
+            "3",
+            "2",
+            "1",
+            "0"});
+            this.symbolsReactorColumn0.Location = new System.Drawing.Point(36, 332);
+            this.symbolsReactorColumn0.Name = "symbolsReactorColumn0";
+            this.symbolsReactorColumn0.Size = new System.Drawing.Size(22, 157);
+            this.symbolsReactorColumn0.TabIndex = 6;
             // 
             // pictureBox
             // 
@@ -115,153 +121,200 @@
             this.pictureBox.TabIndex = 14;
             this.pictureBox.TabStop = false;
             // 
-            // checkedListBox2
+            // newSymbolKeyIN
             // 
-            this.checkedListBox2.CheckOnClick = true;
-            this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Items.AddRange(new object[] {
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""});
-            this.checkedListBox2.Location = new System.Drawing.Point(58, 348);
-            this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(22, 157);
-            this.checkedListBox2.TabIndex = 15;
+            this.newSymbolKeyIN.Location = new System.Drawing.Point(260, 332);
+            this.newSymbolKeyIN.Name = "newSymbolKeyIN";
+            this.newSymbolKeyIN.Size = new System.Drawing.Size(72, 22);
+            this.newSymbolKeyIN.TabIndex = 22;
             // 
-            // checkedListBox3
+            // button4
             // 
-            this.checkedListBox3.CheckOnClick = true;
-            this.checkedListBox3.FormattingEnabled = true;
-            this.checkedListBox3.Items.AddRange(new object[] {
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""});
-            this.checkedListBox3.Location = new System.Drawing.Point(86, 348);
-            this.checkedListBox3.Name = "checkedListBox3";
-            this.checkedListBox3.Size = new System.Drawing.Size(22, 157);
-            this.checkedListBox3.TabIndex = 16;
+            this.button4.Location = new System.Drawing.Point(260, 360);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(72, 42);
+            this.button4.TabIndex = 23;
+            this.button4.Text = "Додати Символ";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.AddToDictionaryButton);
             // 
-            // checkedListBox4
+            // textBox3
             // 
-            this.checkedListBox4.CheckOnClick = true;
-            this.checkedListBox4.FormattingEnabled = true;
-            this.checkedListBox4.Items.AddRange(new object[] {
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""});
-            this.checkedListBox4.Location = new System.Drawing.Point(114, 348);
-            this.checkedListBox4.Name = "checkedListBox4";
-            this.checkedListBox4.Size = new System.Drawing.Size(22, 157);
-            this.checkedListBox4.TabIndex = 17;
+            this.screenSymbolsIN.Location = new System.Drawing.Point(352, 47);
+            this.screenSymbolsIN.Name = "textBox3";
+            this.screenSymbolsIN.Size = new System.Drawing.Size(366, 22);
+            this.screenSymbolsIN.TabIndex = 24;
+            this.screenSymbolsIN.TextChanged += new System.EventHandler(this.screenSymbolsIN_TextChanged);
             // 
-            // checkedListBox5
+            // label1
             // 
-            this.checkedListBox5.CheckOnClick = true;
-            this.checkedListBox5.FormattingEnabled = true;
-            this.checkedListBox5.Items.AddRange(new object[] {
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""});
-            this.checkedListBox5.Location = new System.Drawing.Point(142, 348);
-            this.checkedListBox5.Name = "checkedListBox5";
-            this.checkedListBox5.Size = new System.Drawing.Size(22, 157);
-            this.checkedListBox5.TabIndex = 18;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(219, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(127, 16);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "Інтервал Таймера";
             // 
-            // checkedListBox6
+            // label2
             // 
-            this.checkedListBox6.CheckOnClick = true;
-            this.checkedListBox6.FormattingEnabled = true;
-            this.checkedListBox6.Items.AddRange(new object[] {
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""});
-            this.checkedListBox6.Location = new System.Drawing.Point(170, 348);
-            this.checkedListBox6.Name = "checkedListBox6";
-            this.checkedListBox6.Size = new System.Drawing.Size(22, 157);
-            this.checkedListBox6.TabIndex = 19;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(486, 28);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(103, 16);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "Введіть слово:";
             // 
-            // checkedListBox7
+            // symbolsReactorColumn1
             // 
-            this.checkedListBox7.CheckOnClick = true;
-            this.checkedListBox7.FormattingEnabled = true;
-            this.checkedListBox7.Items.AddRange(new object[] {
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""});
-            this.checkedListBox7.Location = new System.Drawing.Point(198, 348);
-            this.checkedListBox7.Name = "checkedListBox7";
-            this.checkedListBox7.Size = new System.Drawing.Size(22, 157);
-            this.checkedListBox7.TabIndex = 20;
+            this.symbolsReactorColumn1.CheckOnClick = true;
+            this.symbolsReactorColumn1.FormattingEnabled = true;
+            this.symbolsReactorColumn1.Items.AddRange(new object[] {
+            "7",
+            "6",
+            "5",
+            "4",
+            "3",
+            "2",
+            "1",
+            "0"});
+            this.symbolsReactorColumn1.Location = new System.Drawing.Point(64, 332);
+            this.symbolsReactorColumn1.Name = "symbolsReactorColumn1";
+            this.symbolsReactorColumn1.Size = new System.Drawing.Size(22, 157);
+            this.symbolsReactorColumn1.TabIndex = 27;
             // 
-            // checkedListBox8
+            // symbolsReactorColumn2
             // 
-            this.checkedListBox8.CheckOnClick = true;
-            this.checkedListBox8.FormattingEnabled = true;
-            this.checkedListBox8.Items.AddRange(new object[] {
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""});
-            this.checkedListBox8.Location = new System.Drawing.Point(226, 348);
-            this.checkedListBox8.Name = "checkedListBox8";
-            this.checkedListBox8.Size = new System.Drawing.Size(22, 157);
-            this.checkedListBox8.TabIndex = 21;
+            this.symbolsReactorColumn2.CheckOnClick = true;
+            this.symbolsReactorColumn2.FormattingEnabled = true;
+            this.symbolsReactorColumn2.Items.AddRange(new object[] {
+            "7",
+            "6",
+            "5",
+            "4",
+            "3",
+            "2",
+            "1",
+            "0"});
+            this.symbolsReactorColumn2.Location = new System.Drawing.Point(92, 332);
+            this.symbolsReactorColumn2.Name = "symbolsReactorColumn2";
+            this.symbolsReactorColumn2.Size = new System.Drawing.Size(22, 157);
+            this.symbolsReactorColumn2.TabIndex = 28;
+            // 
+            // symbolsReactorColumn3
+            // 
+            this.symbolsReactorColumn3.CheckOnClick = true;
+            this.symbolsReactorColumn3.FormattingEnabled = true;
+            this.symbolsReactorColumn3.Items.AddRange(new object[] {
+            "7",
+            "6",
+            "5",
+            "4",
+            "3",
+            "2",
+            "1",
+            "0"});
+            this.symbolsReactorColumn3.Location = new System.Drawing.Point(120, 332);
+            this.symbolsReactorColumn3.Name = "symbolsReactorColumn3";
+            this.symbolsReactorColumn3.Size = new System.Drawing.Size(22, 157);
+            this.symbolsReactorColumn3.TabIndex = 29;
+            // 
+            // symbolsReactorColumn4
+            // 
+            this.symbolsReactorColumn4.CheckOnClick = true;
+            this.symbolsReactorColumn4.FormattingEnabled = true;
+            this.symbolsReactorColumn4.Items.AddRange(new object[] {
+            "7",
+            "6",
+            "5",
+            "4",
+            "3",
+            "2",
+            "1",
+            "0"});
+            this.symbolsReactorColumn4.Location = new System.Drawing.Point(148, 332);
+            this.symbolsReactorColumn4.Name = "symbolsReactorColumn4";
+            this.symbolsReactorColumn4.Size = new System.Drawing.Size(22, 157);
+            this.symbolsReactorColumn4.TabIndex = 30;
+            // 
+            // symbolsReactorColumn5
+            // 
+            this.symbolsReactorColumn5.CheckOnClick = true;
+            this.symbolsReactorColumn5.FormattingEnabled = true;
+            this.symbolsReactorColumn5.Items.AddRange(new object[] {
+            "7",
+            "6",
+            "5",
+            "4",
+            "3",
+            "2",
+            "1",
+            "0"});
+            this.symbolsReactorColumn5.Location = new System.Drawing.Point(176, 332);
+            this.symbolsReactorColumn5.Name = "symbolsReactorColumn5";
+            this.symbolsReactorColumn5.Size = new System.Drawing.Size(22, 157);
+            this.symbolsReactorColumn5.TabIndex = 31;
+            // 
+            // symbolsReactorColumn6
+            // 
+            this.symbolsReactorColumn6.CheckOnClick = true;
+            this.symbolsReactorColumn6.FormattingEnabled = true;
+            this.symbolsReactorColumn6.Items.AddRange(new object[] {
+            "7",
+            "6",
+            "5",
+            "4",
+            "3",
+            "2",
+            "1",
+            "0"});
+            this.symbolsReactorColumn6.Location = new System.Drawing.Point(204, 332);
+            this.symbolsReactorColumn6.Name = "symbolsReactorColumn6";
+            this.symbolsReactorColumn6.Size = new System.Drawing.Size(22, 157);
+            this.symbolsReactorColumn6.TabIndex = 32;
+            // 
+            // symbolsReactorColumn7
+            // 
+            this.symbolsReactorColumn7.CheckOnClick = true;
+            this.symbolsReactorColumn7.FormattingEnabled = true;
+            this.symbolsReactorColumn7.Items.AddRange(new object[] {
+            "7",
+            "6",
+            "5",
+            "4",
+            "3",
+            "2",
+            "1",
+            "0"});
+            this.symbolsReactorColumn7.Location = new System.Drawing.Point(232, 332);
+            this.symbolsReactorColumn7.Name = "symbolsReactorColumn7";
+            this.symbolsReactorColumn7.Size = new System.Drawing.Size(22, 157);
+            this.symbolsReactorColumn7.TabIndex = 33;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1472, 614);
-            this.Controls.Add(this.checkedListBox8);
-            this.Controls.Add(this.checkedListBox7);
-            this.Controls.Add(this.checkedListBox6);
-            this.Controls.Add(this.checkedListBox5);
-            this.Controls.Add(this.checkedListBox4);
-            this.Controls.Add(this.checkedListBox3);
-            this.Controls.Add(this.checkedListBox2);
-            this.Controls.Add(this.checkedListBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.symbolsReactorColumn7);
+            this.Controls.Add(this.symbolsReactorColumn6);
+            this.Controls.Add(this.symbolsReactorColumn5);
+            this.Controls.Add(this.symbolsReactorColumn4);
+            this.Controls.Add(this.symbolsReactorColumn3);
+            this.Controls.Add(this.symbolsReactorColumn2);
+            this.Controls.Add(this.symbolsReactorColumn1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.screenSymbolsIN);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.newSymbolKeyIN);
+            this.Controls.Add(this.symbolsReactorColumn0);
+            this.Controls.Add(this.intervalIN);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -272,16 +325,21 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox intervalIN;
         private System.Windows.Forms.PictureBox pictureBox;
-        public System.Windows.Forms.CheckedListBox checkedListBox1;
-        public System.Windows.Forms.CheckedListBox checkedListBox2;
-        public System.Windows.Forms.CheckedListBox checkedListBox3;
-        public System.Windows.Forms.CheckedListBox checkedListBox4;
-        public System.Windows.Forms.CheckedListBox checkedListBox5;
-        public System.Windows.Forms.CheckedListBox checkedListBox6;
-        public System.Windows.Forms.CheckedListBox checkedListBox7;
-        public System.Windows.Forms.CheckedListBox checkedListBox8;
+        public System.Windows.Forms.CheckedListBox symbolsReactorColumn0;
+        private System.Windows.Forms.TextBox newSymbolKeyIN;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox screenSymbolsIN;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.CheckedListBox symbolsReactorColumn1;
+        public System.Windows.Forms.CheckedListBox symbolsReactorColumn2;
+        public System.Windows.Forms.CheckedListBox symbolsReactorColumn3;
+        public System.Windows.Forms.CheckedListBox symbolsReactorColumn4;
+        public System.Windows.Forms.CheckedListBox symbolsReactorColumn5;
+        public System.Windows.Forms.CheckedListBox symbolsReactorColumn6;
+        public System.Windows.Forms.CheckedListBox symbolsReactorColumn7;
     }
 }
 
