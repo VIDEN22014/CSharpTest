@@ -153,11 +153,11 @@ namespace WindowsFormsApp2
                                 graph.FillRectangle(Brushes.Black, rect);
                             }
                         }
-                        Rectangle rectUp = new Rectangle(startx + screenWidth * size + screenIndex * 8 * size, starty + size, size, size);
-                        Rectangle rectDown = new Rectangle(startx + screenWidth * size + screenIndex * 8 * size, starty - 8 * size, size, size);
-                        graph.DrawRectangle(pen, rectUp);
+                        Rectangle borderUp = new Rectangle(startx + screenWidth * size + screenIndex * 8 * size, starty + size, size, size);
+                        Rectangle borderDown = new Rectangle(startx + screenWidth * size + screenIndex * 8 * size, starty - 8 * size, size, size);
+                        graph.DrawRectangle(pen, borderUp);
                         graph.DrawRectangle(pen, startx + screenWidth * size + screenIndex * 8 * size, starty + size, size, size);
-                        graph.DrawRectangle(pen, rectDown);
+                        graph.DrawRectangle(pen, borderDown);
                         graph.DrawRectangle(pen, startx + screenWidth * size + screenIndex * 8 * size, starty - 8 * size, size, size);
                     }
                 }
