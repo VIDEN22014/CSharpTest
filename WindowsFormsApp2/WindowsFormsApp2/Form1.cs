@@ -455,6 +455,7 @@ namespace WindowsFormsApp2
             {
                 Vars.Clear();
                 headCtree.Init(InitCTree());
+                consoleText = headCtree.Print();
             }
             else if (command == "vars")
             {
