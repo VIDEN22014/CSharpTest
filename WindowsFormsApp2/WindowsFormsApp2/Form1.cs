@@ -31,7 +31,16 @@ namespace WindowsFormsApp2
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            string s;
+            s=textBoxToString(textBox1);
+            label1.Text = s;
+        }
+        string textBoxToString(TextBox textBox)
+        {
+            if (textBox.Text == "") {
+                return "";
+            }
+            return textBox.Text;
         }
     }
 }
