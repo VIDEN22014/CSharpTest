@@ -343,7 +343,7 @@ namespace WindowsFormsApp2
                 consoleOut.Text = matrixName1 + " is not exist";
             }
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void EnterButton_Click(object sender, EventArgs e)
         {
             input = textBoxToString(consoleIN);
             string command = inputToString();
