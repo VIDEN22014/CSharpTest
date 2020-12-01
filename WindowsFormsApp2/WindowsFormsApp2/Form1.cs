@@ -17,6 +17,21 @@ namespace WindowsFormsApp2
         {
             InitializeComponent();
         }
+        class CSparseMatrix {
+            List<CSparseCell> data;
+            int dim=1;
+            int[] dimValues;
+            string name= "SparseMatrix";
+            double value=1;
+        }
+        class CSparseCell{
+            int[] dimValues;
+            double value=1;
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
