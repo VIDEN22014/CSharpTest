@@ -42,7 +42,7 @@ namespace WindowsFormsApp2
                 }
                 this.data = data;
             }
-            ~CSparseMatrix() {}
+            ~CSparseMatrix() { }
         }
         class CSparseCell
         {
@@ -158,7 +158,7 @@ namespace WindowsFormsApp2
             value = inputToInt();
             matrixName = inputToString();
 
-            CSparseMatrix matrix = new CSparseMatrix(dim, dimValues, value, matrixName,new List<CSparseCell>(0));
+            CSparseMatrix matrix = new CSparseMatrix(dim, dimValues, value, matrixName, new List<CSparseCell>(0));
             bool isFind = false;
             foreach (var item in MatrixDictionary)
             {
@@ -245,6 +245,11 @@ namespace WindowsFormsApp2
                             return;
                         }
                     }//Перевірка чи такий запис вже існує
+                    if (item.Value.value == value)
+                    {
+                        consoleOut.Text = "Value is must be different";
+                        return;
+                    }
                     item.Value.data.Add(new CSparseCell(dimValues, value));
                     consoleOut.Text = "Value succesfuly added";
                     break;
@@ -302,7 +307,7 @@ namespace WindowsFormsApp2
                     matrixName = item.Value.name + "Clone";
                     CSparseMatrix temp = new CSparseMatrix(item.Value.dim, item.Value.dimValues, item.Value.value, matrixName, item.Value.data);
                     MatrixDictionary.Add(temp.name, temp);
-                    consoleOut.Text = matrixName + " Clone succesfuly created";
+                    consoleOut.Text = matrixName + " succesfuly created";
                     break;
                 }
             }
