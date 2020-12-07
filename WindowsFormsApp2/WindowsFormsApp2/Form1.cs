@@ -96,17 +96,12 @@ namespace WindowsFormsApp2
         void deleteNumbers(ref string str)
         {
             bool isFind = true;
-            str = str.ToLower();
             while (isFind)
             {
                 isFind = false;
                 for (int i = 0; i < str.Length; i++)
                 {
-                    if (str[i] == ' ')
-                    {
-
-                    }
-                    else if (str[i] >= 97 && str[i] <= 122)
+                    if (str[i] >= 97 && str[i] <= 122)
                     {
 
                     }
