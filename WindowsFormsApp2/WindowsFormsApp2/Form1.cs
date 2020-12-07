@@ -139,8 +139,10 @@ namespace WindowsFormsApp2
                     if (day>=item.Value)
                     {
                         day = item.Value;
-
-
+                        MessageBox.Show(
+                "Too much days",
+        "Error"
+                );
                     }
                     break;
                 }
