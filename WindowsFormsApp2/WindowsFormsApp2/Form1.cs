@@ -139,6 +139,8 @@ namespace WindowsFormsApp2
                     if (day>=item.Value)
                     {
                         day = item.Value;
+
+
                     }
                     break;
                 }
