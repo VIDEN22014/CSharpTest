@@ -136,13 +136,10 @@ namespace WindowsFormsApp2
             {
                 if (item.Key == str)
                 {
-                    if (day>=item.Value)
+                    if (day >= item.Value)
                     {
                         day = item.Value;
-                        MessageBox.Show(
-                "Too much days",
-        "Error"
-                );
+                        MessageBox.Show("Too much days", "Error");
                     }
                     break;
                 }
@@ -175,7 +172,7 @@ namespace WindowsFormsApp2
             Repare(ref month);
             dayInMonthCheck(ref month, ref day);
             //Зчитує назву місяця
-            consoleOUT.Text = Convert.ToString(day)+ " " + month;
+            consoleOUT.Text = Convert.ToString(day) + " " + month;
         }
     }
 }
