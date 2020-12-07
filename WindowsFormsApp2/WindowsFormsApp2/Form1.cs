@@ -176,7 +176,7 @@ namespace WindowsFormsApp2
             consoleOut.Text = matrix.name + " succesfuly added";
         }
 
-        void MatrixList()
+        void List()
         {
             string consoleText = "";
             consoleText += "Number of Matrixes : " + MatrixDictionary.Count + "\n";
@@ -359,7 +359,7 @@ namespace WindowsFormsApp2
             }
             else if (command == "list")
             {
-                MatrixList();
+                List();
             }
             else if (command == "del")
             {
