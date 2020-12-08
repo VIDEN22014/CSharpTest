@@ -33,18 +33,18 @@ namespace WindowsFormsApp2
         }
         void monthNameInitialize()
         {
-            monthName.Add("ja", "January");
-            monthName.Add("fe", "February");
+            monthName.Add("jan", "January");
+            monthName.Add("feb", "February");
             monthName.Add("mar", "March");
-            monthName.Add("ap", "April");
+            monthName.Add("apr", "April");
             monthName.Add("may", "May");
             monthName.Add("jun", "June");
             monthName.Add("jul", "July");
-            monthName.Add("au", "August");
-            monthName.Add("se", "September");
-            monthName.Add("oc", "October");
-            monthName.Add("no", "November");
-            monthName.Add("de", "December");
+            monthName.Add("aug", "August");
+            monthName.Add("sep", "September");
+            monthName.Add("oct", "October");
+            monthName.Add("nov", "November");
+            monthName.Add("dec", "December");
         }
 
         void dayInMonthInitialize()
@@ -144,8 +144,8 @@ namespace WindowsFormsApp2
         private void button1_Click(object sender, EventArgs e)
         {
             string input;
-            int day = 1;
-            string month = "January";
+            int day = 0;
+            string month = "";
             input = textBoxToString(consoleIN);
             format(ref input);
             string numPattern = @"([1-2]\d)|(3[0-1])|([1-9])";
@@ -155,18 +155,40 @@ namespace WindowsFormsApp2
             {
                 day = Convert.ToInt32(numMatch.Value);
             }
+            else
+            {
+                MessageBox.Show("Days is not found", "Error");
+            }
             //Зчитує число
             deleteNumbers(ref input);
-            string monthPattern = @"(ja)|(jun)|(jul)|(fe)|(mar)|(may)|(ap)|(au)|(se)|(oc)|(no)|(de)";
+            string monthPattern = @"(jan)|(jun)|(jul)|(feb)|(mar)|(may)|(apr)|(aug)|(sep)|(oct)|(nov)|(dec)";
             Regex monthRegex = new Regex(monthPattern);
             Match monthMatch = monthRegex.Match(input);
             if (monthMatch.Success)
             {
                 month = monthMatch.Value;
+            }//Зчитує назву місяця
+            else
+            {
+                if (Regex.IsMatch(input, @"(f\wb|\web|fe\w)|(\w\wbr|\we\wr|f\w\wr|fe\w\w)|(f?e?bru|fe?b?ru|f?eb?ru|f?ebr?u|f?ebru?|fe?br?u|fe?bru?)")) { month = "February"; }
+                else if (Regex.IsMatch(input, @"(s\wp|\wep|se\w)|(\w\wpt|\we\wt|s\w\wt|se\w\w)|(s?e?pte|se?p?te|s?ep?te|s?ept?e|s?epte?|se?pt?e|se?pte?)")) { month = "September"; }
+                else if (Regex.IsMatch(input, @"(o\wt|\wct|oc\w)|(\w\wto|\wc\wo|o\w\wo|oc\w\w)|(o?c?tob|oc?t?ob|o?ct?ob|o?cto?b|o?ctob?|oc?to?b|oc?tob?)")) { month = "October"; }
+                else if (Regex.IsMatch(input, @"(n\wv|\wov|no\w)|(\w\wve|\wo\we|n\w\we)|(n?o?vem|no?v?em|n?ov?em|n?ove?m|n?ovem?|no?ve?m|no?vem?)")) { month = "November"; }
+                else if (Regex.IsMatch(input, @"(d\wc|\wec|de\w)|(\w\wce|\we\we|d\w\we)|(d?e?cem|de?c?em|d?ec?em|d?ece?m|d?ecem?|de?ce?m|de?cem?)")) { month = "December"; }
+                else if (Regex.IsMatch(input, @"(a\wr|\wpr|ap\w)|(\w\wri|\wp\wi|a\w\wi)|(a?p?rie|ap?r?ie|a?pr?ie|a?pri?e|a?prie?|ap?ri?e|ap?rie?)")) { month = "April"; }
+                else if (Regex.IsMatch(input, @"(a\wg|\wug|au\w)|(\w\wgu|\wu\wu|a\w\wu)|(a?u?gus|au?g?us|a?ug?us|a?ugu?s|a?ugus?|au?gu?s|au?gus?)")) { month = "August"; }
+                else if (Regex.IsMatch(input, @"(\wun)|(\w?\w?ne|\w?u\w?e|\w?un\w?|j\w?\w?e)")) { month = "June"; }
+                else if (Regex.IsMatch(input, @"(\wul|j\wl)|(\w?\w?ly|\w?u\w?y|\w?ul\w?|j\w?\w?y|j\w?l\w?)")) { month = "July"; }
+                else if (Regex.IsMatch(input, @"(\wan|ja\w)|(\w?\w?nu|\w?a\w?u|\w?an\w?|j\w?\w?u|ja\w?\w?)")) { month = "January"; }
+                else if (Regex.IsMatch(input, @"(m\wr|\war)|(\w\wrc|\wa\wc|m\w\wc|ma\w\w)|(m?arc|ma?rc)")) { month = "March"; }
+                else if (Regex.IsMatch(input, @"m\wy|\way|ma\w|m\w\w")) { month = "May"; }
+                else
+                {
+                    MessageBox.Show("Month name is not found", "Error");
+                }
             }
             Repare(ref month);
             dayInMonthCheck(ref month, ref day);
-            //Зчитує назву місяця
             consoleOUT.Text = Convert.ToString(day) + " " + month;
         }
     }
