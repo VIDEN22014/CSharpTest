@@ -170,21 +170,47 @@ namespace WindowsFormsApp2
             }//Зчитує назву місяця
             else
             {
-                if (Regex.IsMatch(input, @"(f\wb|\web|fe\w)|(\w\wbr|\we\wr|f\w\wr|fe\w\w)|(f?e?bru|fe?b?ru|f?eb?ru|f?ebr?u|f?ebru?|fe?br?u|fe?bru?)")) { month = "February"; }
-                else if (Regex.IsMatch(input, @"(s\wp|\wep|se\w)|(\w\wpt|\we\wt|s\w\wt|se\w\w)|(s?e?pte|se?p?te|s?ep?te|s?ept?e|s?epte?|se?pt?e|se?pte?)")) { month = "September"; }
-                else if (Regex.IsMatch(input, @"(o\wt|\wct|oc\w)|(\w\wto|\wc\wo|o\w\wo|oc\w\w)|(o?c?tob|oc?t?ob|o?ct?ob|o?cto?b|o?ctob?|oc?to?b|oc?tob?)")) { month = "October"; }
-                else if (Regex.IsMatch(input, @"(n\wv|\wov|no\w)|(\w\wve|\wo\we|n\w\we)|(n?o?vem|no?v?em|n?ov?em|n?ove?m|n?ovem?|no?ve?m|no?vem?)")) { month = "November"; }
-                else if (Regex.IsMatch(input, @"(d\wc|\wec|de\w)|(\w\wce|\we\we|d\w\we)|(d?e?cem|de?c?em|d?ec?em|d?ece?m|d?ecem?|de?ce?m|de?cem?)")) { month = "December"; }
-                else if (Regex.IsMatch(input, @"(a\wr|\wpr|ap\w)|(\w\wri|\wp\wi|a\w\wi)|(a?p?rie|ap?r?ie|a?pr?ie|a?pri?e|a?prie?|ap?ri?e|ap?rie?)")) { month = "April"; }
-                else if (Regex.IsMatch(input, @"(a\wg|\wug|au\w)|(\w\wgu|\wu\wu|a\w\wu)|(a?u?gus|au?g?us|a?ug?us|a?ugu?s|a?ugus?|au?gu?s|au?gus?)")) { month = "August"; }
-                else if (Regex.IsMatch(input, @"(\wun)|(\w?\w?ne|\w?u\w?e|\w?un\w?|j\w?\w?e)")) { month = "June"; }
-                else if (Regex.IsMatch(input, @"(\wul|j\wl)|(\w?\w?ly|\w?u\w?y|\w?ul\w?|j\w?\w?y|j\w?l\w?)")) { month = "July"; }
-                else if (Regex.IsMatch(input, @"(\wan|ja\w)|(\w?\w?nu|\w?a\w?u|\w?an\w?|j\w?\w?u|ja\w?\w?)")) { month = "January"; }
-                else if (Regex.IsMatch(input, @"(m\wr|\war)|(\w\wrc|\wa\wc|m\w\wc|ma\w\w)|(m?arc|ma?rc)")) { month = "March"; }
-                else if (Regex.IsMatch(input, @"m\wy|\way|ma\w|m\w\w")) { month = "May"; }
-                else
+                switch (true)
                 {
-                    MessageBox.Show("Month name is not found", "Error");
+                    case bool _ when Regex.IsMatch(input, @"(f\wb|\web|fe\w)|(\w\wbr|\we\wr|f\w\wr|fe\w\w)|(f?e?bru|fe?b?ru|f?eb?ru|f?ebr?u|f?ebru?|fe?br?u|fe?bru?)"):
+                        month = "February";
+                        break;
+                    case bool _ when Regex.IsMatch(input, @"(\wun)|(\w?\w?ne|\w?un\w?|j\w?\w?e)"):
+                        month = "June";
+                        break;
+                    case bool _ when Regex.IsMatch(input, @"(\wul|j\wl)|(\w?\w?ly|\w?u\w?y|\w?ul\w?|j\w?\w?y|j\w?l\w?)"):
+                        month = "July";
+                        break;
+                    case bool _ when Regex.IsMatch(input, @"(\wan|ja\w)|(\w?\w?nu|\w?a\w?u|\w?an\w?|j\w?\w?u|ja\w?\w?)"):
+                        month = "January";
+                        break;
+                    case bool _ when Regex.IsMatch(input, @"(s\wp|\wep|se\w)|(\w\wpt|\we\wt|s\w\wt|se\w\w)|(s?e?pte|se?p?te|s?ep?te|s?ept?e|s?epte?|se?pt?e|se?pte?)"):
+                        month = "September";
+                        break;
+                    case bool _ when Regex.IsMatch(input, @"(o\wt|\wct|oc\w)|(\w\wto|\wc\wo|o\w\wo|oc\w\w)|(o?c?tob|oc?t?ob|o?ct?ob|o?cto?b|o?ctob?|oc?to?b|oc?tob?)"):
+                        month = "October";
+                        break;
+                    case bool _ when Regex.IsMatch(input, @"(n\wv|\wov|no\w)|(\w\wve|\wo\we|n\w\we)|(n?o?vem|no?v?em|n?ov?em|n?ove?m|n?ovem?|no?ve?m|no?vem?)"):
+                        month = "November";
+                        break;
+                    case bool _ when Regex.IsMatch(input, @"(d\wc|\wec|de\w)|(\w\wce|\we\we|d\w\we)|(d?e?cem|de?c?em|d?ec?em|d?ece?m|d?ecem?|de?ce?m|de?cem?)"):
+                        month = "December";
+                        break;
+                    case bool _ when Regex.IsMatch(input, @"(a\wr|\wpr|ap\w)|(\w\wri|\wp\wi|a\w\wi)|(a?p?ril|ap?r?il|a?pr?il|a?pri?l|a?pril?|ap?ri?l|ap?ril?)"):
+                        month = "April";
+                        break;
+                    case bool _ when Regex.IsMatch(input, @"(a\wg|\wug|au\w)|(\w\wgu|\wu\wu|a\w\wu)|(a?u?gus|au?g?us|a?ug?us|a?ugu?s|a?ugus?|au?gu?s|au?gus?)"):
+                        month = "August";
+                        break;
+                    case bool _ when Regex.IsMatch(input, @"(m\wr|\war)|(\w\wrc|\wa\wc|m\w\wc|ma\w\w)|(m?a?rch|ma?r?ch|m?ar?ch|m?arc?h|m?arch?|ma?rc?h|ma?rch?)"):
+                        month = "March";
+                        break;
+                    case bool _ when Regex.IsMatch(input, @"m\wy|\way|ma\w|m\w\w"):
+                        month = "May";
+                        break;
+                    default:
+                        MessageBox.Show("Month name is not found", "Error");
+                        break;
                 }
             }
             Repare(ref month);

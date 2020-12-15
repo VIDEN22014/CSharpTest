@@ -39,25 +39,25 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
+            this.button1.Text = "Ввести";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
+            // consoleIN
             // 
             this.consoleIN.Location = new System.Drawing.Point(72, 47);
-            this.consoleIN.Name = "textBox1";
+            this.consoleIN.Name = "consoleIN";
             this.consoleIN.Size = new System.Drawing.Size(226, 22);
             this.consoleIN.TabIndex = 1;
             // 
-            // label1
+            // consoleOUT
             // 
             this.consoleOUT.AutoSize = true;
             this.consoleOUT.Location = new System.Drawing.Point(72, 76);
-            this.consoleOUT.Name = "label1";
-            this.consoleOUT.Size = new System.Drawing.Size(45, 16);
+            this.consoleOUT.Name = "consoleOUT";
+            this.consoleOUT.Size = new System.Drawing.Size(87, 16);
             this.consoleOUT.TabIndex = 2;
-            this.consoleOUT.Text = "label1";
+            this.consoleOUT.Text = "ConsoleOUT";
             // 
             // Form1
             // 
